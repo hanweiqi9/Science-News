@@ -26,17 +26,23 @@
     UITabBarController *tabBarVC = [[UITabBarController alloc] init];
     
     MainViewController *mainVC = [[MainViewController alloc]init];
-    mainVC.tabBarItem.title = @"科技";
+    mainVC.tabBarItem.image = [UIImage imageNamed:@"ft_home_normal_ic"];
+    UIImage *mainSelectImage =[ UIImage imageNamed:@"ft_home_selected_ic"];
+    mainVC.tabBarItem.selectedImage = [mainSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
     mainVC.navigationItem.title = @"科技";
+    mainVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
     MineViewController *mineVC = [[MineViewController alloc]init];
-    mineVC.tabBarItem.title = @"个人中心";
     UINavigationController *mineNav =[[UINavigationController alloc]initWithRootViewController:mineVC];
-    mineNav.navigationItem.title = @"个人中心";
+    mineVC.tabBarItem.image = [UIImage imageNamed:@"ft_person_normal_ic"];
+    UIImage *mineSelectImage = [UIImage imageNamed:@"ft_person_selected_ic"];
+    mineVC.tabBarItem.selectedImage = [mineSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mineVC.navigationItem.title = @"个人中心";
+    mineVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
     tabBarVC.viewControllers = @[nav,mineNav];
-    tabBarVC.tabBar.tintColor = [UIColor blueColor];
+    
     tabBarVC.tabBar.barTintColor = [UIColor blackColor];
     tabBarVC.delegate = self;
     
