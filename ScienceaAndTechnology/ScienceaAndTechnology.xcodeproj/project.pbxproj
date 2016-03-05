@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		5557075F0A0E29FB0ABEAB3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C01C688C0DC732A5C394A462 /* libPods.a */; };
+		7A1BD5AC1C890F8700AF98C6 /* newsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5AB1C890F8700AF98C6 /* newsModel.m */; };
+		7A1BD5B91C892CEA00AF98C6 /* VOContentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B21C892CEA00AF98C6 /* VOContentLayer.m */; };
+		7A1BD5BA1C892CEA00AF98C6 /* VOIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B41C892CEA00AF98C6 /* VOIndicatorAnimation.m */; };
+		7A1BD5BB1C892CEA00AF98C6 /* VOSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B61C892CEA00AF98C6 /* VOSegment.m */; };
+		7A1BD5BC1C892CEA00AF98C6 /* VOSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B81C892CEA00AF98C6 /* VOSegmentedControl.m */; };
+		7A1BD5C01C89333000AF98C6 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5BE1C89333000AF98C6 /* NewsTableViewCell.m */; };
+		7A1BD5C11C89333000AF98C6 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A1BD5BF1C89333000AF98C6 /* NewsTableViewCell.xib */; };
+		7A1BD5C31C89390F00AF98C6 /* Homepage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A1BD5C21C89390F00AF98C6 /* Homepage.plist */; };
+		7A1BD5C51C89876C00AF98C6 /* Page1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A1BD5C41C89876C00AF98C6 /* Page1.plist */; };
+		7A1BD5CB1C89A86F00AF98C6 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A1BD5C71C89A86F00AF98C6 /* blueArrow.png */; };
+		7A1BD5CC1C89A86F00AF98C6 /* blueArrowDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A1BD5C81C89A86F00AF98C6 /* blueArrowDown.png */; };
+		7A1BD5CD1C89A86F00AF98C6 /* PullingRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5CA1C89A86F00AF98C6 /* PullingRefreshTableView.m */; };
+		7A1BD5D01C89B73F00AF98C6 /* HWTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5CE1C89B73F00AF98C6 /* HWTools.m */; };
+		7A1BD5D31C89CC7700AF98C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5D21C89CC7700AF98C6 /* ViewController.m */; };
 		7A67DB3B1C881149005AA3B7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A67DB3A1C881149005AA3B7 /* main.m */; };
 		7A67DB3E1C881149005AA3B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A67DB3D1C881149005AA3B7 /* AppDelegate.m */; };
 		7A67DB401C881149005AA3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB3F1C881149005AA3B7 /* Assets.xcassets */; };
@@ -40,6 +54,29 @@
 
 /* Begin PBXFileReference section */
 		30D6E35A54AEA4FC9512494E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7A1BD5AA1C890F8700AF98C6 /* newsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsModel.h; sourceTree = "<group>"; };
+		7A1BD5AB1C890F8700AF98C6 /* newsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsModel.m; sourceTree = "<group>"; };
+		7A1BD5B11C892CEA00AF98C6 /* VOContentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOContentLayer.h; sourceTree = "<group>"; };
+		7A1BD5B21C892CEA00AF98C6 /* VOContentLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOContentLayer.m; sourceTree = "<group>"; };
+		7A1BD5B31C892CEA00AF98C6 /* VOIndicatorAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOIndicatorAnimation.h; sourceTree = "<group>"; };
+		7A1BD5B41C892CEA00AF98C6 /* VOIndicatorAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOIndicatorAnimation.m; sourceTree = "<group>"; };
+		7A1BD5B51C892CEA00AF98C6 /* VOSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegment.h; sourceTree = "<group>"; };
+		7A1BD5B61C892CEA00AF98C6 /* VOSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSegment.m; sourceTree = "<group>"; };
+		7A1BD5B71C892CEA00AF98C6 /* VOSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegmentedControl.h; sourceTree = "<group>"; };
+		7A1BD5B81C892CEA00AF98C6 /* VOSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSegmentedControl.m; sourceTree = "<group>"; };
+		7A1BD5BD1C89333000AF98C6 /* NewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		7A1BD5BE1C89333000AF98C6 /* NewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		7A1BD5BF1C89333000AF98C6 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		7A1BD5C21C89390F00AF98C6 /* Homepage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Homepage.plist; sourceTree = "<group>"; };
+		7A1BD5C41C89876C00AF98C6 /* Page1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Page1.plist; sourceTree = "<group>"; };
+		7A1BD5C71C89A86F00AF98C6 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		7A1BD5C81C89A86F00AF98C6 /* blueArrowDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrowDown.png; sourceTree = "<group>"; };
+		7A1BD5C91C89A86F00AF98C6 /* PullingRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullingRefreshTableView.h; sourceTree = "<group>"; };
+		7A1BD5CA1C89A86F00AF98C6 /* PullingRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullingRefreshTableView.m; sourceTree = "<group>"; };
+		7A1BD5CE1C89B73F00AF98C6 /* HWTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTools.m; sourceTree = "<group>"; };
+		7A1BD5CF1C89B73F00AF98C6 /* HWTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTools.h; sourceTree = "<group>"; };
+		7A1BD5D11C89CC7700AF98C6 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		7A1BD5D21C89CC7700AF98C6 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7A67DB361C881149005AA3B7 /* ScienceaAndTechnology.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScienceaAndTechnology.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A67DB3A1C881149005AA3B7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7A67DB3C1C881149005AA3B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,6 +135,32 @@
 				C01C688C0DC732A5C394A462 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A1BD5B01C892CEA00AF98C6 /* VOSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				7A1BD5B11C892CEA00AF98C6 /* VOContentLayer.h */,
+				7A1BD5B21C892CEA00AF98C6 /* VOContentLayer.m */,
+				7A1BD5B31C892CEA00AF98C6 /* VOIndicatorAnimation.h */,
+				7A1BD5B41C892CEA00AF98C6 /* VOIndicatorAnimation.m */,
+				7A1BD5B51C892CEA00AF98C6 /* VOSegment.h */,
+				7A1BD5B61C892CEA00AF98C6 /* VOSegment.m */,
+				7A1BD5B71C892CEA00AF98C6 /* VOSegmentedControl.h */,
+				7A1BD5B81C892CEA00AF98C6 /* VOSegmentedControl.m */,
+			);
+			path = VOSegmentedControl;
+			sourceTree = "<group>";
+		};
+		7A1BD5C61C89A86F00AF98C6 /* PullingRefreshTableView */ = {
+			isa = PBXGroup;
+			children = (
+				7A1BD5C71C89A86F00AF98C6 /* blueArrow.png */,
+				7A1BD5C81C89A86F00AF98C6 /* blueArrowDown.png */,
+				7A1BD5C91C89A86F00AF98C6 /* PullingRefreshTableView.h */,
+				7A1BD5CA1C89A86F00AF98C6 /* PullingRefreshTableView.m */,
+			);
+			path = PullingRefreshTableView;
 			sourceTree = "<group>";
 		};
 		7A67DB2D1C881149005AA3B7 = {
@@ -187,6 +250,8 @@
 			children = (
 				7A67DB6F1C881970005AA3B7 /* MainViewController.h */,
 				7A67DB701C881970005AA3B7 /* MainViewController.m */,
+				7A1BD5D11C89CC7700AF98C6 /* ViewController.h */,
+				7A1BD5D21C89CC7700AF98C6 /* ViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +260,10 @@
 			isa = PBXGroup;
 			children = (
 				7A67DB811C887B54005AA3B7 /* News.plist */,
+				7A1BD5C41C89876C00AF98C6 /* Page1.plist */,
+				7A1BD5C21C89390F00AF98C6 /* Homepage.plist */,
+				7A1BD5AA1C890F8700AF98C6 /* newsModel.h */,
+				7A1BD5AB1C890F8700AF98C6 /* newsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +272,9 @@
 			isa = PBXGroup;
 			children = (
 				7A67DB791C881C35005AA3B7 /* Main.storyboard */,
+				7A1BD5BD1C89333000AF98C6 /* NewsTableViewCell.h */,
+				7A1BD5BE1C89333000AF98C6 /* NewsTableViewCell.m */,
+				7A1BD5BF1C89333000AF98C6 /* NewsTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +316,8 @@
 		7A67DB7D1C88394F005AA3B7 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				7A1BD5C61C89A86F00AF98C6 /* PullingRefreshTableView */,
+				7A1BD5B01C892CEA00AF98C6 /* VOSegmentedControl */,
 				7A67DB7E1C8839ED005AA3B7 /* Tool */,
 			);
 			path = Library;
@@ -254,6 +328,8 @@
 			children = (
 				7A67DB7F1C883A36005AA3B7 /* Main.pch */,
 				7A67DB801C8868F8005AA3B7 /* Hearder.h */,
+				7A1BD5CE1C89B73F00AF98C6 /* HWTools.m */,
+				7A1BD5CF1C89B73F00AF98C6 /* HWTools.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -377,10 +453,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A67DB7A1C881C35005AA3B7 /* Main.storyboard in Resources */,
+				7A1BD5CC1C89A86F00AF98C6 /* blueArrowDown.png in Resources */,
 				7A67DB401C881149005AA3B7 /* Assets.xcassets in Resources */,
 				7A67DB431C881149005AA3B7 /* LaunchScreen.storyboard in Resources */,
+				7A1BD5CB1C89A86F00AF98C6 /* blueArrow.png in Resources */,
+				7A1BD5C51C89876C00AF98C6 /* Page1.plist in Resources */,
 				7A67DB821C887B54005AA3B7 /* News.plist in Resources */,
+				7A1BD5C11C89333000AF98C6 /* NewsTableViewCell.xib in Resources */,
 				7A67DB7C1C881D05005AA3B7 /* Mine.storyboard in Resources */,
+				7A1BD5C31C89390F00AF98C6 /* Homepage.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,10 +534,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A1BD5D01C89B73F00AF98C6 /* HWTools.m in Sources */,
+				7A1BD5CD1C89A86F00AF98C6 /* PullingRefreshTableView.m in Sources */,
 				7A67DB3E1C881149005AA3B7 /* AppDelegate.m in Sources */,
+				7A1BD5B91C892CEA00AF98C6 /* VOContentLayer.m in Sources */,
 				7A67DB711C881970005AA3B7 /* MainViewController.m in Sources */,
+				7A1BD5BC1C892CEA00AF98C6 /* VOSegmentedControl.m in Sources */,
+				7A1BD5D31C89CC7700AF98C6 /* ViewController.m in Sources */,
+				7A1BD5BA1C892CEA00AF98C6 /* VOIndicatorAnimation.m in Sources */,
+				7A1BD5BB1C892CEA00AF98C6 /* VOSegment.m in Sources */,
+				7A1BD5C01C89333000AF98C6 /* NewsTableViewCell.m in Sources */,
 				7A67DB3B1C881149005AA3B7 /* main.m in Sources */,
 				7A67DB741C881991005AA3B7 /* MineViewController.m in Sources */,
+				7A1BD5AC1C890F8700AF98C6 /* newsModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
