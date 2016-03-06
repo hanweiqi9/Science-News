@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIWebViewDelegate>
 @property(nonatomic,copy) NSString *ActivityId;
+@property(nonatomic,strong) UIWebView *webView;
+@property(nonatomic,copy) NSString *TypeId;
+
+
 @end

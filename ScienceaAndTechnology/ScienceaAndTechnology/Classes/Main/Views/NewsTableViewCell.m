@@ -27,16 +27,14 @@
 }
 
 -(void)setModel:(newsModel *)model{
-//    if ([model.img isEqualToString:@""]) {
-//        self.titleLabel.frame = CGRectMake(8, 7, 308, 39);
-//        self.titleLabel.text = model.newstitle;
-//    }else{
     
     self.titleLabel.text = model.newstitle;
     self.nameLabel.text = model.name;
+    self.contentLabel.text = model.summ;
     [self.photoImage sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
-        
-//    }
+    
+   
+
     
 }
 

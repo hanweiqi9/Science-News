@@ -18,6 +18,7 @@
 @property(nonatomic,copy)NSString *name;
 @property(nonatomic,copy)NSString *newstitle;
 @property(nonatomic,copy)NSString *typeId;
+@property (nonatomic, copy) NSString *summ;
 
 
 

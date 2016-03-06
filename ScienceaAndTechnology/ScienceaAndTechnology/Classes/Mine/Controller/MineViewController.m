@@ -18,7 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     self.view.backgroundColor = [UIColor cyanColor];
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

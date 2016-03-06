@@ -28,6 +28,7 @@
 @property(nonatomic,strong) NSMutableArray *FourNewsArray;
 @property(nonatomic,strong) NSMutableArray *FiveNewsArray;
 @property(nonatomic,strong) NSMutableArray *SixNewsArray;
+@property(nonatomic,strong) NSMutableArray *homeNewsArray;
 @property(nonatomic,strong) PullingRefreshTableView *mainTableView;
 @property(nonatomic,assign) BOOL refreshing;
 
@@ -108,6 +109,13 @@
     return _SixNewsArray;
 }
 
+-(NSMutableArray *)homeNewsArray{
+    if (_homeNewsArray == nil) {
+        self.homeNewsArray = [NSMutableArray new];
+    }
+    return _homeNewsArray;
+}
+
 -(VOSegmentedControl *)segmentedControl{
     if (_segmentedControl == nil) {
         self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"    最新"},@{VOSegmentText:@"    业界"},@{VOSegmentText:@"    看点"},@{VOSegmentText:@"    深度"},@{VOSegmentText:@"    运营"},@{VOSegmentText:@"    产品"},@{VOSegmentText:@"   技术"}]];
@@ -136,7 +144,7 @@
         
         self.mainTableView.delegate = self;
         self.mainTableView.dataSource = self;
-        self.mainTableView.rowHeight = 116;
+        self.mainTableView.rowHeight = 120;
         self.mainTableView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
     }
     return _mainTableView;
@@ -157,6 +165,8 @@
         self.allNewsArray = self.FiveNewsArray;
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeTechnology){
         self.allNewsArray = self.SixNewsArray;
+    }else if (_segmentedControl.selectedSegmentIndex == NewListTypeHome){
+        self.allNewsArray = self.homeNewsArray;
     }
 
     [self.mainTableView tableViewDidFinishedLoading];
@@ -172,7 +182,6 @@
     [sessionManage GET:[NSString stringWithFormat:@"%@&page=%ld",kHomepage,_pageCount] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
         NSArray *newsArray = responseObject;
         if (self.refreshing) {
             if (self.allNewsArray.count > 0) {
@@ -181,10 +190,11 @@
         }
         for (NSDictionary *dic in newsArray) {
             newsModel *model = [[newsModel alloc]initWithDictionary:dic];
-            [self.allNewsArray addObject:model];
+            [self.homeNewsArray addObject:model];
 //            NSLog(@"%@",self.allNewsArray);
         }
         
+        [self selectBtn];
         [self.mainTableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -342,8 +352,11 @@
 #pragma mark---------UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    newsModel *model = self.allNewsArray[indexPath.row];
     ViewController *view = [[ViewController alloc] init];
     UINavigationController *viewVC = [[UINavigationController alloc]initWithRootViewController:view];
+    view.ActivityId = model.newsId;
+    view.TypeId = model.typeId;
     [self.navigationController presentViewController:viewVC animated:YES completion:nil];
 }
 
@@ -357,6 +370,8 @@
     NewsTableViewCell *cell = [self.mainTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     newsModel *model = self.allNewsArray[indexPath.row];
     cell.model = model;
+    cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
+
     return cell;
 }
 
@@ -391,7 +406,9 @@
 }
 
 - (void)segmentCtrlValuechange{
-    if (_segmentedControl.selectedSegmentIndex==NewListTypeIndustry) {
+    if (_segmentedControl.selectedSegmentIndex==NewListTypeHome){
+        [self requestLoad];
+    }else if (_segmentedControl.selectedSegmentIndex == NewListTypeIndustry){
         [self getIndustryRequest];
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeWatch){
         [self getWatchRequest];

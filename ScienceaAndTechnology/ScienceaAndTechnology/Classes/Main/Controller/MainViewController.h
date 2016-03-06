@@ -13,4 +13,5 @@
 @property(nonatomic,copy) newsModel *model;
 @property(nonatomic,assign) NewListType *newListType;
 
+
 @end

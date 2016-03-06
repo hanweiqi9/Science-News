@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import "MineViewController.h"
+#import "WeiboSDK.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WeiboSDKDelegate>
 
 
 @end
@@ -21,6 +22,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    //注册微博
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:@"4045536466"];
     
     
     UITabBarController *tabBarVC = [[UITabBarController alloc] init];
@@ -41,6 +46,8 @@
     mineVC.navigationItem.title = @"个人中心";
     mineVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
+    
+    
     tabBarVC.viewControllers = @[nav,mineNav];
     
     tabBarVC.tabBar.barTintColor = [UIColor blackColor];
@@ -53,6 +60,11 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+
+
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

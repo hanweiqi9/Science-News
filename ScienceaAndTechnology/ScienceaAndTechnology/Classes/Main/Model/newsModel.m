@@ -18,6 +18,9 @@
         self.name = dic[@"sitename"];
         self.newstitle = dic[@"title"];
         self.img = dic[@"img"];
+        self.typeId = dic[@"type_id"];
+        self.summ = dic[@"summary"];
+        self.addtime = dic[@"addtime"];
     }
     return self;
 }
