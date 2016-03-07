@@ -17,6 +17,9 @@
 @end
 
 @implementation AppDelegate
+@synthesize wbtoken;
+@synthesize wbCurrentUserID;
+@synthesize wbRefreshToken;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -38,17 +41,16 @@
     mainVC.navigationItem.title = @"科技";
     mainVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-    MineViewController *mineVC = [[MineViewController alloc]init];
-    UINavigationController *mineNav =[[UINavigationController alloc]initWithRootViewController:mineVC];
-    mineVC.tabBarItem.image = [UIImage imageNamed:@"ft_person_normal_ic"];
+
+    
+    UIStoryboard *mineStory = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+    UINavigationController *mine = mineStory.instantiateInitialViewController;
+    mine.tabBarItem.image = [UIImage imageNamed:@"ft_person_normal_ic"];
     UIImage *mineSelectImage = [UIImage imageNamed:@"ft_person_selected_ic"];
-    mineVC.tabBarItem.selectedImage = [mineSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    mineVC.navigationItem.title = @"个人中心";
-    mineVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    
-    
-    
-    tabBarVC.viewControllers = @[nav,mineNav];
+    mine.tabBarItem.selectedImage = [mineSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    mine.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+
+    tabBarVC.viewControllers = @[nav,mine];
     
     tabBarVC.tabBar.barTintColor = [UIColor blackColor];
     tabBarVC.delegate = self;
@@ -60,6 +62,7 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 
 

@@ -14,7 +14,7 @@
 #import "PullingRefreshTableView.h"
 #import "ViewController.h"
 
-@interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,PullingRefreshTableViewDelegate>
+@interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,PullingRefreshTableViewDelegate,UIScrollViewDelegate>
 {
     NSInteger _pageCount;
 }
@@ -30,6 +30,8 @@
 @property(nonatomic,strong) NSMutableArray *SixNewsArray;
 @property(nonatomic,strong) NSMutableArray *homeNewsArray;
 @property(nonatomic,strong) PullingRefreshTableView *mainTableView;
+@property(nonatomic,strong) UISwipeGestureRecognizer *leftSwipe;
+@property(nonatomic,strong) UISwipeGestureRecognizer *rightSwipe;
 @property(nonatomic,assign) BOOL refreshing;
 
 @end
@@ -39,22 +41,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barTintColor = mainColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
-    
     _pageCount = 1;
     [self.mainTableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.segmentedControl];
+    
     [self selectBtn];
-    [self requestLoad];
     [self.mainTableView launchRefreshing];
     [self segmentCtrlValuechange];
-    
-    
     
 }
 
@@ -118,7 +116,7 @@
 
 -(VOSegmentedControl *)segmentedControl{
     if (_segmentedControl == nil) {
-        self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"    最新"},@{VOSegmentText:@"    业界"},@{VOSegmentText:@"    看点"},@{VOSegmentText:@"    深度"},@{VOSegmentText:@"    运营"},@{VOSegmentText:@"    产品"},@{VOSegmentText:@"   技术"}]];
+        self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"   最新"},@{VOSegmentText:@"   业界"},@{VOSegmentText:@"   看点"},@{VOSegmentText:@"   深度"},@{VOSegmentText:@"   运营"},@{VOSegmentText:@"   产品"},@{VOSegmentText:@"   技术"}]];
         self.segmentedControl.frame = CGRectMake(0, 64, kScreenWidth, 44);
         self.segmentedControl.contentStyle = VOContentStyleImageAlone;
         self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
@@ -146,14 +144,36 @@
         self.mainTableView.dataSource = self;
         self.mainTableView.rowHeight = 120;
         self.mainTableView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
+        self.leftSwipe =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handSwipes:)];
+        self.rightSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handSwipes:)];
+        
+        self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
+        self.leftSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+        [self.mainTableView addGestureRecognizer:self.leftSwipe];
+        [self.mainTableView addGestureRecognizer:self.rightSwipe];
+
+//        [self.newsView addSubview:self.mainTableView];
     }
     return _mainTableView;
 }
 
+
 #pragma mark---------------Custom Method
 
+-(void)handSwipes:(UISwipeGestureRecognizer *)sender{
+    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
+        self.segmentedControl.selectedSegmentIndex -= 1;
+        [self segmentCtrlValuechange];
+    }else if (sender.direction == UISwipeGestureRecognizerDirectionRight){
+        self.segmentedControl.selectedSegmentIndex += 1;
+        [self segmentCtrlValuechange];
+    }
+}
+
 -(void)selectBtn{
-    if(_segmentedControl.selectedSegmentIndex==NewListTypeIndustry) {
+     if (_segmentedControl.selectedSegmentIndex == NewListTypeHome){
+        self.allNewsArray = self.homeNewsArray;
+    }else if(_segmentedControl.selectedSegmentIndex==NewListTypeIndustry) {
         self.allNewsArray = self.OneNewsArray;
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeWatch){
         self.allNewsArray = self.TwoNewsArray;
@@ -165,10 +185,7 @@
         self.allNewsArray = self.FiveNewsArray;
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeTechnology){
         self.allNewsArray = self.SixNewsArray;
-    }else if (_segmentedControl.selectedSegmentIndex == NewListTypeHome){
-        self.allNewsArray = self.homeNewsArray;
     }
-
     [self.mainTableView tableViewDidFinishedLoading];
     self.mainTableView.reachedTheEnd = NO;
     
@@ -196,6 +213,7 @@
         
         [self selectBtn];
         [self.mainTableView reloadData];
+        
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
@@ -364,12 +382,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.allNewsArray.count;
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsTableViewCell *cell = [self.mainTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     newsModel *model = self.allNewsArray[indexPath.row];
     cell.model = model;
+
     cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
 
     return cell;
@@ -397,18 +417,11 @@
     return [HWTools getSystemNowDate];
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.mainTableView tableViewDidScroll:scrollView];
-}
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self.mainTableView tableViewDidEndDragging:scrollView];
-}
-
 - (void)segmentCtrlValuechange{
     if (_segmentedControl.selectedSegmentIndex==NewListTypeHome){
         [self requestLoad];
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeIndustry){
+        
         [self getIndustryRequest];
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeWatch){
         [self getWatchRequest];
@@ -419,6 +432,7 @@
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeProduct) {
         [self getProductRequest];
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeTechnology){
+
         [self getTechnologyRequest];
     }
 

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5557075F0A0E29FB0ABEAB3C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C01C688C0DC732A5C394A462 /* libPods.a */; };
+		7A12AE681C8C4DA900D7776B /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7A12AE651C8C4DA900D7776B /* ProgressHUD.bundle */; };
+		7A12AE691C8C4DA900D7776B /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A12AE671C8C4DA900D7776B /* ProgressHUD.m */; };
+		7A12AE6C1C8C646500D7776B /* shareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A12AE6B1C8C646500D7776B /* shareView.m */; };
 		7A1BD5AC1C890F8700AF98C6 /* newsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5AB1C890F8700AF98C6 /* newsModel.m */; };
 		7A1BD5B91C892CEA00AF98C6 /* VOContentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B21C892CEA00AF98C6 /* VOContentLayer.m */; };
 		7A1BD5BA1C892CEA00AF98C6 /* VOIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A1BD5B41C892CEA00AF98C6 /* VOIndicatorAnimation.m */; };
@@ -69,6 +72,11 @@
 
 /* Begin PBXFileReference section */
 		30D6E35A54AEA4FC9512494E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7A12AE651C8C4DA900D7776B /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		7A12AE661C8C4DA900D7776B /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		7A12AE671C8C4DA900D7776B /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		7A12AE6A1C8C646500D7776B /* shareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareView.h; sourceTree = "<group>"; };
+		7A12AE6B1C8C646500D7776B /* shareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareView.m; sourceTree = "<group>"; };
 		7A1BD5AA1C890F8700AF98C6 /* newsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newsModel.h; sourceTree = "<group>"; };
 		7A1BD5AB1C890F8700AF98C6 /* newsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newsModel.m; sourceTree = "<group>"; };
 		7A1BD5B11C892CEA00AF98C6 /* VOContentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOContentLayer.h; sourceTree = "<group>"; };
@@ -199,6 +207,16 @@
 				C01C688C0DC732A5C394A462 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A12AE641C8C4DA900D7776B /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				7A12AE651C8C4DA900D7776B /* ProgressHUD.bundle */,
+				7A12AE661C8C4DA900D7776B /* ProgressHUD.h */,
+				7A12AE671C8C4DA900D7776B /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
 		7A1BD5B01C892CEA00AF98C6 /* VOSegmentedControl */ = {
@@ -400,6 +418,7 @@
 		7A67DB7D1C88394F005AA3B7 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				7A12AE641C8C4DA900D7776B /* ProgressHUD */,
 				7A5E84FF1C8AC73900868BE1 /* libWeiboSDK */,
 				7A1BD5C61C89A86F00AF98C6 /* PullingRefreshTableView */,
 				7A1BD5B01C892CEA00AF98C6 /* VOSegmentedControl */,
@@ -417,6 +436,8 @@
 				7A1BD5CF1C89B73F00AF98C6 /* HWTools.h */,
 				7A5E84FC1C8A911E00868BE1 /* UIViewController+Common.h */,
 				7A5E84FD1C8A911E00868BE1 /* UIViewController+Common.m */,
+				7A12AE6A1C8C646500D7776B /* shareView.h */,
+				7A12AE6B1C8C646500D7776B /* shareView.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -542,6 +563,7 @@
 				7A67DB7A1C881C35005AA3B7 /* Main.storyboard in Resources */,
 				7A1BD5CC1C89A86F00AF98C6 /* blueArrowDown.png in Resources */,
 				7A67DB401C881149005AA3B7 /* Assets.xcassets in Resources */,
+				7A12AE681C8C4DA900D7776B /* ProgressHUD.bundle in Resources */,
 				7A5E84F81C8A83AC00868BE1 /* Activity.plist in Resources */,
 				7A67DB431C881149005AA3B7 /* LaunchScreen.storyboard in Resources */,
 				7A1BD5CB1C89A86F00AF98C6 /* blueArrow.png in Resources */,
@@ -627,6 +649,7 @@
 				7A1BD5CD1C89A86F00AF98C6 /* PullingRefreshTableView.m in Sources */,
 				7A67DB3E1C881149005AA3B7 /* AppDelegate.m in Sources */,
 				7A1BD5B91C892CEA00AF98C6 /* VOContentLayer.m in Sources */,
+				7A12AE6C1C8C646500D7776B /* shareView.m in Sources */,
 				7A67DB711C881970005AA3B7 /* MainViewController.m in Sources */,
 				7A1BD5BC1C892CEA00AF98C6 /* VOSegmentedControl.m in Sources */,
 				7A1BD5D31C89CC7700AF98C6 /* ViewController.m in Sources */,
@@ -635,6 +658,7 @@
 				7A1BD5C01C89333000AF98C6 /* NewsTableViewCell.m in Sources */,
 				7A67DB3B1C881149005AA3B7 /* main.m in Sources */,
 				7A5E84FE1C8A911E00868BE1 /* UIViewController+Common.m in Sources */,
+				7A12AE691C8C4DA900D7776B /* ProgressHUD.m in Sources */,
 				7A67DB741C881991005AA3B7 /* MineViewController.m in Sources */,
 				7A1BD5AC1C890F8700AF98C6 /* newsModel.m in Sources */,
 			);

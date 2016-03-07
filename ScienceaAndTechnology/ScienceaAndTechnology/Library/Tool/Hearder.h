@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger,NewListType) {
 //"http://news.coolban.com/Api/Index/get_news/app/2/id/388783/autoload/1?uuid=Honor%2FCHM-TL00%2FhwCHM-H%3A4.4.2%2FHonorCHM-TL00%2FC01B231%3Auser%2Fota-rel-keys%2Crelease-keys&model=Android&channel=default&net=5&ver=600"
 //"http://news.coolban.com/Api/Index/get_news/app/2/autoload/1?uuid=Honor%2FCHM-TL00%2FhwCHM-H%3A4.4.2%2FHonorCHM-TL00%2FC01B231%3Auser%2Fota-rel-keys%2Crelease-keys&model=Android&channel=default&net=5&ver=600"
 
-
+#define kAppKey @"4045536466"
+#define kRedirectURI @"https://api.weibo.com/oauth2/default.html"
 
 #endif /* Hearder_h */
