@@ -71,6 +71,7 @@
 
 
 -(void)shareActivityAction:(UIButton *)btn{
+    
     self.shareView = [[shareView alloc] init];
     [self.view addSubview:self.shareView];
         

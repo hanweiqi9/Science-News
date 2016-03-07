@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "MineViewController.h"
 #import "WeiboSDK.h"
+#import "DiscoverViewController.h"
 
 @interface AppDelegate ()<WeiboSDKDelegate>
 
@@ -37,12 +38,21 @@
     mainVC.tabBarItem.image = [UIImage imageNamed:@"ft_home_normal_ic"];
     UIImage *mainSelectImage =[ UIImage imageNamed:@"ft_home_selected_ic"];
     mainVC.tabBarItem.selectedImage = [mainSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
+//    mainVC.tabBarItem.title = @"科技";
     mainVC.navigationItem.title = @"科技";
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
     mainVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     
-
     
+    DiscoverViewController *discoverVC = [[DiscoverViewController alloc] init];
+    discoverVC.tabBarItem.image = [UIImage imageNamed:@"ft_found_normal_ic"];
+    UIImage *discoverSelectImage =[ UIImage imageNamed:@"ft_found_selected_ic"];
+    discoverVC.tabBarItem.selectedImage = [discoverSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    discoverVC.tabBarItem.title = @"发现";
+    discoverVC.navigationItem.title = @"金融界";
+    UINavigationController *dicNav = [[UINavigationController alloc]initWithRootViewController:discoverVC];
+    discoverVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+
     UIStoryboard *mineStory = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
     UINavigationController *mine = mineStory.instantiateInitialViewController;
     mine.tabBarItem.image = [UIImage imageNamed:@"ft_person_normal_ic"];
@@ -50,7 +60,7 @@
     mine.tabBarItem.selectedImage = [mineSelectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     mine.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
 
-    tabBarVC.viewControllers = @[nav,mine];
+    tabBarVC.viewControllers = @[nav,dicNav, mine];
     
     tabBarVC.tabBar.barTintColor = [UIColor blackColor];
     tabBarVC.delegate = self;
@@ -64,8 +74,22 @@
 }
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation {
+    return [WeiboSDK handleOpenURL:url delegate:self];
+}
 
 
+
+-(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+    
+    
+}
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+    
+}
 
 
 

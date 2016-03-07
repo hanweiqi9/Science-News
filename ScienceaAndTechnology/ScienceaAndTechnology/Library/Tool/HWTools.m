@@ -36,7 +36,11 @@
     
 }
 
-
++(NSTimeInterval)getTimesTamp{
+    NSDate *date = [NSDate date];
+    NSTimeInterval time = [date timeIntervalSince1970];
+    return time;
+}
 
 
 @end

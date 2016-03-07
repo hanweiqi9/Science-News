@@ -8,6 +8,7 @@
 
 #import "UIViewController+Common.h"
 #import "MainViewController.h"
+#import "DiscoverViewController.h"
 
 @implementation UIViewController (Common)
 

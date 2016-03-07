@@ -16,7 +16,7 @@
 
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,PullingRefreshTableViewDelegate,UIScrollViewDelegate>
 {
-    NSInteger _pageCount;
+    NSInteger _timeStamp;
 }
 
 
@@ -45,7 +45,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barTintColor = mainColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    _pageCount = 1;
+    
     [self.mainTableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.segmentedControl];
@@ -116,9 +116,9 @@
 
 -(VOSegmentedControl *)segmentedControl{
     if (_segmentedControl == nil) {
-        self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"   最新"},@{VOSegmentText:@"   业界"},@{VOSegmentText:@"   看点"},@{VOSegmentText:@"   深度"},@{VOSegmentText:@"   运营"},@{VOSegmentText:@"   产品"},@{VOSegmentText:@"   技术"}]];
+        self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"最新"},@{VOSegmentText:@"业界"},@{VOSegmentText:@"看点"},@{VOSegmentText:@"深度"},@{VOSegmentText:@"运营"},@{VOSegmentText:@"产品"},@{VOSegmentText:@"技术"}]];
         self.segmentedControl.frame = CGRectMake(0, 64, kScreenWidth, 44);
-        self.segmentedControl.contentStyle = VOContentStyleImageAlone;
+        self.segmentedControl.contentStyle = VOContentStyleTextAlone;
         self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
         
         self.segmentedControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -196,7 +196,15 @@
 -(void)requestLoad{
     AFHTTPSessionManager *sessionManage =[AFHTTPSessionManager manager];
     sessionManage.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManage GET:[NSString stringWithFormat:@"%@&page=%ld",kHomepage,_pageCount] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kHomepage;
+    if (!_refreshing) {
+      url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/",_timeStamp]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+    [sessionManage GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *newsArray = responseObject;
@@ -223,7 +231,7 @@
 -(void)getIndustryRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:[NSString stringWithFormat:@"%@&page=%ld",kIndustry,_pageCount]  parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [sessionManager GET:kIndustry  parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
         NSArray *array = responseObject;
@@ -375,6 +383,7 @@
     UINavigationController *viewVC = [[UINavigationController alloc]initWithRootViewController:view];
     view.ActivityId = model.newsId;
     view.TypeId = model.typeId;
+    view.title = model.title;
     [self.navigationController presentViewController:viewVC animated:YES completion:nil];
 }
 
@@ -401,21 +410,32 @@
 //下拉
 -(void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
     self.refreshing = YES;
-    _pageCount = 1;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
-    
 }
-
 //上拉
 -(void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView{
+    if (_timeStamp > 3600*10) {
+        _timeStamp-=3600*10;
+    }
     self.refreshing = NO;
-    _pageCount += 1;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
 }
 //刷新完成时间
 - (NSDate *)pullingTableViewRefreshingFinishedDate{
     return [HWTools getSystemNowDate];
 }
+//手指拖动
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.mainTableView tableViewDidScroll:scrollView];
+}
+//手指结束拖动
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    [self.mainTableView tableViewDidEndDragging:scrollView];
+    
+}
+
+
 
 - (void)segmentCtrlValuechange{
     if (_segmentedControl.selectedSegmentIndex==NewListTypeHome){

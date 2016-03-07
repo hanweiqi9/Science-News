@@ -15,6 +15,7 @@
 //根据指定时间戳返回字符串类型时间
 +(NSString *)getDateFromString:(NSString *)timestamp;//时间拖
 
++(NSTimeInterval)getTimesTamp;
 //获取当前系统时间
 +(NSDate *)getSystemNowDate;
 

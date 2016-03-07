@@ -105,7 +105,6 @@
         self.shareView.frame = CGRectMake(0, kScreenHeight-250, kScreenWidth, 350);
     }];
     
-
 }
 
 -(void)last{
@@ -130,7 +129,7 @@
 }
 - (WBMessageObject *)messageToShare{
     WBMessageObject *message = [WBMessageObject message];
-    message.text = NSLocalizedString(@"不完美", nil);
+    message.text = NSLocalizedString(@"就这样吧，实在做不出来了", nil);
     WBImageObject *image = [WBImageObject object];
     image.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"1" ofType:@".jpg"]];
     message.imageObject = image;
@@ -140,13 +139,26 @@
 
 -(void)friendActivity{
     
+    
+    
+    
 }
 
 -(void)CircleActivity{
     
 }
 
--(void)messageActivity{
+
+
+
+
+#pragma mark--------------WeiboSDKDelegate
+-(void)didReceiveWeiboRequest:(WBBaseRequest *)request{
+    
+    
+}
+
+-(void)didReceiveWeiboResponse:(WBBaseResponse *)response{
     
 }
 
