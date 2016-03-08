@@ -9,11 +9,12 @@
 #import "ViewController.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "WeiboSDK.h"
-
+#import "shareView.h"
 
 @interface ViewController ()
 @property(nonatomic,strong) UIView *shareView;
 @property(nonatomic,strong) UIView *grayView;
+@property(nonatomic,strong) NSString *urlString;
 
 @end
 
@@ -38,6 +39,8 @@
     [self backBtn];
     [self loadString:self.ActivityId];
     [self titleString];
+    [self titString:self.titleStr];
+//    [self photoString:self.photoStr];
 
 
 }
@@ -67,13 +70,27 @@
     NSURL *urlStr = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlStr];
     [self.webView loadRequest:request];
+//    self.urlString = str;
+   
 }
 
+-(void)titString:(NSString *)title{
+    self.urlString = title;
+}
+
+//-(void)photoString:(NSString *)photo{
+//    self.photoStr = [photo substringToIndex:61];
+//}
 
 -(void)shareActivityAction:(UIButton *)btn{
     
-    self.shareView = [[shareView alloc] init];
-    [self.view addSubview:self.shareView];
+    shareView *sharVc = [[shareView alloc]init];
+    sharVc.sharUrlString = self.urlString;
+    NSLog(@"%@",sharVc.sharUrlString);
+    sharVc.photoStr = self.photoStr;
+//    NSLog(@"%@",sharVc.photoStr);
+    
+    [self.view addSubview:sharVc];
         
     
 }

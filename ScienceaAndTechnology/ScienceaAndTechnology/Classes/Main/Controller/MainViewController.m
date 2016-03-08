@@ -144,6 +144,7 @@
         self.mainTableView.dataSource = self;
         self.mainTableView.rowHeight = 120;
         self.mainTableView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
+        
         self.leftSwipe =[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handSwipes:)];
         self.rightSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handSwipes:)];
         
@@ -383,7 +384,9 @@
     UINavigationController *viewVC = [[UINavigationController alloc]initWithRootViewController:view];
     view.ActivityId = model.newsId;
     view.TypeId = model.typeId;
-    view.title = model.title;
+//    view.title = model.title;
+    view.titleStr = model.title;
+    view.photoStr = model.img;
     [self.navigationController presentViewController:viewVC animated:YES completion:nil];
 }
 
@@ -434,9 +437,6 @@
     [self.mainTableView tableViewDidEndDragging:scrollView];
     
 }
-
-
-
 - (void)segmentCtrlValuechange{
     if (_segmentedControl.selectedSegmentIndex==NewListTypeHome){
         [self requestLoad];

@@ -8,7 +8,7 @@
 
 #import "NewsTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
+#import "HWTools.h"
 @interface NewsTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -28,13 +28,34 @@
 
 -(void)setModel:(newsModel *)model{
     
-    self.titleLabel.text = model.newstitle;
-    self.nameLabel.text = model.name;
-    self.contentLabel.text = model.summ;
-    [self.photoImage sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
-    
+//    [self.photoImage sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
+//    
+//    if (self.photoImage != nil) {
+//        self.titleLabel.text = model.newstitle;
+//        self.nameLabel.text = model.name;
+//        self.contentLabel.text = model.summ;
+//
+//    }if (self.photoImage == nil) {
+//        self.timeLabel.frame = CGRectMake(14, 12, 339,40 );
+//        self.timeLabel.text = model.newstitle;
+//        self.nameLabel.text = model.name;
+//        self.contentLabel.frame = CGRectMake(14, 55, 339, 40);
+//        self.contentLabel.text = model.summ;
+//    }
+    if (model.img.length>0) {
+        self.titleLabel.text = model.newstitle;
+        self.nameLabel.text = model.name;
+        self.contentLabel.text = model.summ;
+        [self.photoImage sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
+    }else if (model.img.length == 0){
+        self.timeLabel.frame = CGRectMake(14, 12, 339,40 );
+        self.timeLabel.text = model.newstitle;
+        self.nameLabel.text = model.name;
+        self.contentLabel.frame = CGRectMake(14, 55, 339, 40);
+        self.contentLabel.text = model.summ;
+    }
    
-
+   
     
 }
 

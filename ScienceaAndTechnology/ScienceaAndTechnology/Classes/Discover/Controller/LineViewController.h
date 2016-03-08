@@ -11,5 +11,6 @@
 @interface LineViewController : UIViewController
 @property(nonatomic,strong) UIWebView *WebView;
 @property(nonatomic,copy) NSString *urlStr;
+@property(nonatomic,copy) NSString *titleStr;
 
 @end

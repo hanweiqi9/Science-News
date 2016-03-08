@@ -57,22 +57,12 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UG4-Xq-kuD">
                         <rect key="frame" x="265" y="12" width="97" height="76"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RL6-rM-5to">
-                        <rect key="frame" x="272" y="96" width="83" height="14"/>
-                        <string key="text" base64-UTF8="YES">
-NRAQECDlsI/ml7bliY0
-</string>
-                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contentLabel" destination="kIH-MO-JZ9" id="Hdy-wV-qMy"/>
                 <outlet property="nameLabel" destination="eIN-zg-Ig9" id="Iem-13-GLu"/>
                 <outlet property="photoImage" destination="UG4-Xq-kuD" id="P1T-x7-giE"/>
-                <outlet property="timeLabel" destination="RL6-rM-5to" id="z8p-hn-piL"/>
                 <outlet property="titleLabel" destination="45d-Yh-eTw" id="XP5-W8-JCi"/>
             </connections>
             <point key="canvasLocation" x="320" y="277.5"/>

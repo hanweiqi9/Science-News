@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface shareView : UIView
-
+@property(nonatomic,strong) NSString *sharUrlString;
+@property(nonatomic,strong) NSString *photoStr;
 
 @end

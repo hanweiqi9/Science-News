@@ -9,8 +9,9 @@
 #import "shareView.h"
 #import "WeiboSDK.h"
 #import "AppDelegate.h"
+#import "WXApi.h"
 
-@interface shareView ()<WeiboSDKDelegate>
+@interface shareView ()<WeiboSDKDelegate,WXApiDelegate>
 @property(nonatomic,strong) UIView *shareView;
 @property(nonatomic,strong) UIView *grayView;
 
@@ -99,8 +100,6 @@
     label.text = @"分享给朋友";
     label.textAlignment = NSTextAlignmentCenter;
     [self.shareView addSubview:label];
-    
-    
     [UIView animateWithDuration:0.5 animations:^{
         self.shareView.frame = CGRectMake(0, kScreenHeight-250, kScreenWidth, 350);
     }];
@@ -129,22 +128,43 @@
 }
 - (WBMessageObject *)messageToShare{
     WBMessageObject *message = [WBMessageObject message];
-    message.text = NSLocalizedString(@"就这样吧，实在做不出来了", nil);
-    WBImageObject *image = [WBImageObject object];
-    image.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"1" ofType:@".jpg"]];
-    message.imageObject = image;
+    message.text = self.sharUrlString;
+    WBImageObject *image1 = [WBImageObject object];
+    image1.imageData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"1" ofType:@".jpg"]];
+    message.imageObject = image1;
     return message;
 }
 
 
 -(void)friendActivity{
-    
-    
-    
+    SendMessageToWXReq *req =[[SendMessageToWXReq alloc]init];
+    req.text = self.sharUrlString;
+    req.bText = YES;
+    req.scene = WXSceneSession;
+    [WXApi sendReq:req];
     
 }
 
 -(void)CircleActivity{
+    WXMediaMessage *message =[WXMediaMessage message];
+    [message setThumbImage:[UIImage imageNamed:@"tupian@2x.png"]];
+    
+    WXImageObject *ext = [WXImageObject object];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"1" ofType:@".jpg"];
+    ext.imageData = [NSData dataWithContentsOfFile:filePath];
+    
+    UIImage* image = [UIImage imageWithData:ext.imageData];
+    ext.imageData = UIImagePNGRepresentation(image);
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = WXSceneTimeline;
+    
+    [WXApi sendReq:req];
+
     
 }
 

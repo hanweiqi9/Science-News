@@ -7,11 +7,13 @@
 //
 
 #import "LineViewController.h"
+#import "shareView.h"
 
 
 @interface LineViewController ()
 @property(nonatomic,strong) UIView *shareView;
 @property(nonatomic,strong) UIView *grayView;
+//@property(nonatomic,strong) NSString *urlStr;
 @end
 
 @implementation LineViewController
@@ -46,6 +48,7 @@
     NSURL *urlStr = [NSURL URLWithString:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:urlStr];
     [self.WebView loadRequest:request];
+    self.urlStr = str;
     
 }
 
@@ -55,9 +58,9 @@
 
 -(void)shareActivityAction:(UIButton *)btn{
     
-    self.shareView = [[shareView alloc] init];
-    [self.view addSubview:self.shareView];
-    
+    shareView *shareVC = [[shareView alloc] init];
+    shareVC.sharUrlString = self.urlStr;
+    [self.view addSubview:shareVC];
     
 }
 

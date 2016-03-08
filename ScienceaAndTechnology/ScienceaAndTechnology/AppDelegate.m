@@ -11,8 +11,10 @@
 #import "MineViewController.h"
 #import "WeiboSDK.h"
 #import "DiscoverViewController.h"
+#import "WXApi.h"
+#import <BmobSDK/Bmob.h>
 
-@interface AppDelegate ()<WeiboSDKDelegate>
+@interface AppDelegate ()<WeiboSDKDelegate,WXApiDelegate>
 
 
 @end
@@ -30,6 +32,10 @@
     //注册微博
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:@"4045536466"];
+    //微信
+    [WXApi registerApp:@"wxb18bd78d096243ca"];
+    [Bmob registerWithAppKey:@"cbbafcff50ae5f4b10cd76f46d219704"];
+    
     
     
     UITabBarController *tabBarVC = [[UITabBarController alloc] init];
@@ -75,10 +81,17 @@
 
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    if ([WeiboSDK isCanShareInWeiboAPP]) {
+        return [WeiboSDK handleOpenURL:url delegate:self];
+    }
+    return [WXApi handleOpenURL:url delegate:self];
+    
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation {
-    return [WeiboSDK handleOpenURL:url delegate:self];
+    if ([WeiboSDK isCanShareInWeiboAPP]) {
+        return [WeiboSDK handleOpenURL:url delegate:self];
+    }
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
 
@@ -91,6 +104,13 @@
     
 }
 
+-(void)onReq:(BaseReq *)req{
+    
+}
+
+-(void)onResp:(BaseResp *)resp{
+    
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
