@@ -11,6 +11,8 @@
 #import <BmobSDK/Bmob.h>
 #import "ProgressHUD.h"
 #import <MessageUI/MessageUI.h>
+#import "ForgetViewController.h"
+#import "EmailViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,MFMailComposeViewControllerDelegate>
 @property(nonatomic,strong) UITextField *userName;
@@ -23,7 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"11.jpg"]];
+    
     self.navigationController.navigationBar.barTintColor = mainColor;
     self.navigationItem.title = @"登录";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -35,7 +39,7 @@
     text.textColor = [UIColor blackColor];
     [self.view addSubview:text];
     self.userName = [[UITextField alloc]initWithFrame:CGRectMake(135, 150, 200, 30)];
-    self.userName.placeholder = @"QQ号/手机号/邮箱";
+    self.userName.placeholder = @"请输入用户名";
     self.userName.borderStyle = UITextBorderStyleRoundedRect;
     self.userName.delegate=self;
     [self.view addSubview:self.userName];
@@ -51,30 +55,69 @@
     self.userPassword.delegate=self;
     [self.view addSubview:self.userPassword];
     
-    
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-//    button.frame = CGRectMake(55, 280, 80, 30);
-//    [button setBackgroundColor:[UIColor grayColor]];
-//    [button setTitle:@"忘记密码" forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor redColor] forState:
-//     UIControlStateNormal];
-//    
-//    [self.view addSubview:button];
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
     button1.frame = CGRectMake(55, 280, kScreenWidth-110, 44);
     [button1 setBackgroundColor:mainColor];
     [button1 setTitle:@"登  陆" forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    button1.titleLabel.font = [UIFont systemFontOfSize:17.0];
     [button1 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
     [self.view addSubview:button1];
+
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button2.frame = CGRectMake(55, 334, kScreenWidth-110, 44);
+    button2.frame = CGRectMake(55, 340, kScreenWidth-110, 44);
     [button2 setBackgroundColor:mainColor];
     [button2 setTitle:@"注  册" forState:UIControlStateNormal];
     [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button2.titleLabel.font = [UIFont systemFontOfSize:17.0];
     [button2 addTarget:self action:@selector(zhuce) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button2];
+    
+    UIButton *button4 = [UIButton buttonWithType:UIButtonTypeSystem];
+    button4.frame = CGRectMake(280, 600, 80, 44);
+    [button4 setBackgroundColor:[UIColor clearColor]];
+    [button4 setTitle:@"忘记密码？" forState:UIControlStateNormal];
+    [button4 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button4 addTarget:self action:@selector(password) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button4];
+
+    
+    UIButton *button3 = [UIButton buttonWithType:UIButtonTypeSystem];
+    button3.frame = CGRectMake(30, 600, 80, 44);
+    [button3 setBackgroundColor:[UIColor clearColor]];
+    [button3 setTitle:@"重置密码？" forState:UIControlStateNormal];
+    [button3 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [button3 addTarget:self action:@selector(forget) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button3];
+    
+}
+
+- (void)forget{
+    
+    ForgetViewController *regis =[[ForgetViewController alloc] init];
+    UINavigationController *registVC =[[UINavigationController alloc] initWithRootViewController:regis];
+
+    [self.navigationController presentViewController:registVC animated:YES completion:nil];
+    
+}
+
+- (void)password{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"找回" message:@"是否需要邮箱" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        EmailViewController *email = [[EmailViewController alloc] init];
+        UINavigationController *emailVC = [[UINavigationController alloc] initWithRootViewController:email];
+        [self.navigationController presentViewController:emailVC animated:YES completion:nil];
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alert addAction:action];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+
+    
+    
     
 }
 

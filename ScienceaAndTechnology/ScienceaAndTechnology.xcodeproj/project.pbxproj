@@ -81,6 +81,12 @@
 		7A67DB7A1C881C35005AA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB791C881C35005AA3B7 /* Main.storyboard */; };
 		7A67DB7C1C881D05005AA3B7 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB7B1C881D05005AA3B7 /* Mine.storyboard */; };
 		7A67DB821C887B54005AA3B7 /* News.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB811C887B54005AA3B7 /* News.plist */; };
+		7AA96F631C8FC099003F97E7 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7AA96F621C8FC099003F97E7 /* 11.jpg */; };
+		7AA96F661C8FCA79003F97E7 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */; };
+		7AA96F6A1C9006F1003F97E7 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA96F681C9006F1003F97E7 /* TableViewCell.m */; };
+		7AA96F6B1C9006F1003F97E7 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AA96F691C9006F1003F97E7 /* TableViewCell.xib */; };
+		7AA96F6D1C9019A9003F97E7 /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7AA96F6C1C9019A9003F97E7 /* 14.jpg */; };
+		7AA96F701C9061C1003F97E7 /* EmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA96F6F1C9061C1003F97E7 /* EmailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +225,15 @@
 		7A67DB791C881C35005AA3B7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7A67DB7B1C881D05005AA3B7 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		7A67DB811C887B54005AA3B7 /* News.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = News.plist; sourceTree = "<group>"; };
+		7AA96F621C8FC099003F97E7 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		7AA96F641C8FCA79003F97E7 /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
+		7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
+		7AA96F671C9006F1003F97E7 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		7AA96F681C9006F1003F97E7 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		7AA96F691C9006F1003F97E7 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		7AA96F6C1C9019A9003F97E7 /* 14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 14.jpg; sourceTree = "<group>"; };
+		7AA96F6E1C9061C1003F97E7 /* EmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailViewController.h; sourceTree = "<group>"; };
+		7AA96F6F1C9061C1003F97E7 /* EmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailViewController.m; sourceTree = "<group>"; };
 		C01C688C0DC732A5C394A462 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF66B642C3B2B6204EC8140 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -453,6 +468,9 @@
 				7A16FA011C8D4EA20086C65B /* DiscoverTableViewCell.h */,
 				7A16FA021C8D4EA20086C65B /* DiscoverTableViewCell.m */,
 				7A16FA031C8D4EA20086C65B /* DiscoverTableViewCell.xib */,
+				7AA96F671C9006F1003F97E7 /* TableViewCell.h */,
+				7AA96F681C9006F1003F97E7 /* TableViewCell.m */,
+				7AA96F691C9006F1003F97E7 /* TableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -486,7 +504,9 @@
 				7A11BCDD1C8E674C002432EE /* tupian@2x.png */,
 				7A16F9FF1C8D2A620086C65B /* 1.jpg */,
 				7A11BD9E1C8EF7A7002432EE /* 01.jpg */,
+				7AA96F621C8FC099003F97E7 /* 11.jpg */,
 				7A11BDA01C8EFEAA002432EE /* 12.jpg */,
+				7AA96F6C1C9019A9003F97E7 /* 14.jpg */,
 				7A67DB661C881827005AA3B7 /* Classes */,
 				7A67DB3C1C881149005AA3B7 /* AppDelegate.h */,
 				7A67DB3D1C881149005AA3B7 /* AppDelegate.m */,
@@ -598,6 +618,10 @@
 				7A11BCE01C8EA510002432EE /* LoginViewController.m */,
 				7A11BCE21C8EA52A002432EE /* RegisterViewController.h */,
 				7A11BCE31C8EA52A002432EE /* RegisterViewController.m */,
+				7AA96F641C8FCA79003F97E7 /* ForgetViewController.h */,
+				7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */,
+				7AA96F6E1C9061C1003F97E7 /* EmailViewController.h */,
+				7AA96F6F1C9061C1003F97E7 /* EmailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -748,13 +772,16 @@
 				7A5E84F81C8A83AC00868BE1 /* Activity.plist in Resources */,
 				7A67DB431C881149005AA3B7 /* LaunchScreen.storyboard in Resources */,
 				7A11BDA11C8EFEAA002432EE /* 12.jpg in Resources */,
+				7AA96F6D1C9019A9003F97E7 /* 14.jpg in Resources */,
 				7A16FA051C8D4EA30086C65B /* DiscoverTableViewCell.xib in Resources */,
 				7A11BD961C8EECD0002432EE /* LPLevelView.bundle in Resources */,
 				7A16F9FB1C8D04E30086C65B /* Assets.xcassets in Resources */,
 				7A1BD5C51C89876C00AF98C6 /* Page1.plist in Resources */,
 				7A11BD7E1C8EEC5A002432EE /* Bmob_iOS_SDK更新历史.txt in Resources */,
 				7A67DB821C887B54005AA3B7 /* News.plist in Resources */,
+				7AA96F631C8FC099003F97E7 /* 11.jpg in Resources */,
 				7A1BD5C11C89333000AF98C6 /* NewsTableViewCell.xib in Resources */,
+				7AA96F6B1C9006F1003F97E7 /* TableViewCell.xib in Resources */,
 				7A67DB7C1C881D05005AA3B7 /* Mine.storyboard in Resources */,
 				7A11BD861C8EEC5A002432EE /* read_me.txt in Resources */,
 				7A11BD9F1C8EF7A7002432EE /* 01.jpg in Resources */,
@@ -836,6 +863,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A16FA041C8D4EA20086C65B /* DiscoverTableViewCell.m in Sources */,
+				7AA96F661C8FCA79003F97E7 /* ForgetViewController.m in Sources */,
 				7A67DB3E1C881149005AA3B7 /* AppDelegate.m in Sources */,
 				7A16F9FE1C8D052B0086C65B /* DiscoverViewController.m in Sources */,
 				7A11BD871C8EEC5A002432EE /* HWTools.m in Sources */,
@@ -849,10 +877,12 @@
 				7A11BCE41C8EA52A002432EE /* RegisterViewController.m in Sources */,
 				7A11BD8C1C8EEC5A002432EE /* VOSegment.m in Sources */,
 				7A11BD9D1C8EEF7A002432EE /* ScoreView.m in Sources */,
+				7AA96F701C9061C1003F97E7 /* EmailViewController.m in Sources */,
 				7A11BD8A1C8EEC5A002432EE /* VOContentLayer.m in Sources */,
 				7A11BCE11C8EA510002432EE /* LoginViewController.m in Sources */,
 				7A11BD891C8EEC5A002432EE /* UIViewController+Common.m in Sources */,
 				7A16FA0A1C8D57790086C65B /* DiscoverModel.m in Sources */,
+				7AA96F6A1C9006F1003F97E7 /* TableViewCell.m in Sources */,
 				7A1BD5C01C89333000AF98C6 /* NewsTableViewCell.m in Sources */,
 				7A11BD8B1C8EEC5A002432EE /* VOIndicatorAnimation.m in Sources */,
 				7A67DB3B1C881149005AA3B7 /* main.m in Sources */,

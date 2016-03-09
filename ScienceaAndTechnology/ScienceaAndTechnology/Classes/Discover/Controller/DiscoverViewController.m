@@ -14,6 +14,7 @@
 #import "HWTools.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LineViewController.h"
+#import "TableViewCell.h"
 
 @interface DiscoverViewController ()<PullingRefreshTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) PullingRefreshTableView *tableView;
@@ -37,10 +38,11 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"DiscoverTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-
-    [self requestLoad];
+    
     [self.view addSubview:self.tableView];
-    [self.tableView launchRefreshing];
+    
+    [self requestLoad];
+       [self.tableView launchRefreshing];
     
 
 }
@@ -89,6 +91,7 @@
 -(PullingRefreshTableView *)tableView{
     if (_tableView == nil) {
         self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        self.tableView.pullingDelegate = self;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.rowHeight = 85;
@@ -100,6 +103,7 @@
 
 
 #pragma mark--------------Custom
+
 
 -(void)requestLoad{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -131,25 +135,26 @@
                 }
             }
         }
-//        [self selectBtn];
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
 }
 
+
+
+
 #pragma mark-------------UITableViewDelegate
 #pragma mark-------------UITableViewDataSource
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DiscoverTableViewCell *cell =[self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.titleLabel.text = self.TitleArray[indexPath.row];
-    [cell.photoView sd_setImageWithURL:[NSURL URLWithString:self.photoArray[indexPath.row]] placeholderImage:nil];
-    cell.subLabel.text = self.subArray[indexPath.row];
+        cell.titleLabel.text = self.TitleArray[indexPath.row];
+        [cell.photoView sd_setImageWithURL:[NSURL URLWithString:self.photoArray[indexPath.row]] placeholderImage:nil];
+        cell.subLabel.text = self.subArray[indexPath.row];
+        cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
     
-    cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
-    return cell;
-    
+  return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -13,10 +13,13 @@
 #import "VOSegmentedControl.h"
 #import "PullingRefreshTableView.h"
 #import "ViewController.h"
+#import "ProgressHUD.h"
 
 @interface MainViewController ()<UITableViewDataSource,UITableViewDelegate,PullingRefreshTableViewDelegate,UIScrollViewDelegate>
 {
     NSInteger _timeStamp;
+    NSInteger _type;
+   
 }
 
 
@@ -44,16 +47,23 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.barTintColor = mainColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
-    [self.mainTableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.segmentedControl];
     
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+//    _type = 0;
+    _timeStamp = [HWTools getTimesTamp];
+    [self.mainTableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+
     [self selectBtn];
     [self.mainTableView launchRefreshing];
     [self segmentCtrlValuechange];
     
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [ProgressHUD dismiss];
 }
 
 #pragma mark------------Lazy
@@ -138,8 +148,8 @@
 
 -(PullingRefreshTableView *)mainTableView{
     if (_mainTableView == nil) {
-        self.mainTableView = [[PullingRefreshTableView alloc]initWithFrame:CGRectMake(0, 44, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
-        
+        self.mainTableView = [[PullingRefreshTableView alloc]initWithFrame:CGRectMake(0, 44+64, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        self.mainTableView.pullingDelegate = self;
         self.mainTableView.delegate = self;
         self.mainTableView.dataSource = self;
         self.mainTableView.rowHeight = 120;
@@ -149,7 +159,7 @@
         self.rightSwipe = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handSwipes:)];
         
         self.leftSwipe.direction = UISwipeGestureRecognizerDirectionLeft;
-        self.leftSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+        self.rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
         [self.mainTableView addGestureRecognizer:self.leftSwipe];
         [self.mainTableView addGestureRecognizer:self.rightSwipe];
 
@@ -163,7 +173,7 @@
 
 -(void)handSwipes:(UISwipeGestureRecognizer *)sender{
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-        self.segmentedControl.selectedSegmentIndex -= 1;
+        self.segmentedControl.selectedSegmentIndex -=1;
         [self segmentCtrlValuechange];
     }else if (sender.direction == UISwipeGestureRecognizerDirectionRight){
         self.segmentedControl.selectedSegmentIndex += 1;
@@ -187,10 +197,11 @@
     }else if (_segmentedControl.selectedSegmentIndex == NewListTypeTechnology){
         self.allNewsArray = self.SixNewsArray;
     }
+    [self.mainTableView reloadData];
     [self.mainTableView tableViewDidFinishedLoading];
     self.mainTableView.reachedTheEnd = NO;
     
-    [self.mainTableView reloadData];
+    
 
 }
 //首页
@@ -199,19 +210,21 @@
     sessionManage.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kHomepage;
     if (!_refreshing) {
-      url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/",_timeStamp]];
+      url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
+    [ProgressHUD show:@"正在刷新数据..."];
     [sessionManage GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *newsArray = responseObject;
         if (self.refreshing) {
-            if (self.allNewsArray.count > 0) {
-                [self.allNewsArray removeAllObjects];
+            if (self.homeNewsArray.count > 0) {
+                [self.homeNewsArray removeAllObjects];
             }
         }
         for (NSDictionary *dic in newsArray) {
@@ -221,20 +234,30 @@
         }
         
         [self selectBtn];
-        [self.mainTableView reloadData];
-        
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
 //业界
 -(void)getIndustryRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kIndustry  parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kIndustry;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+    [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url  parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.OneNewsArray.count > 0) {
@@ -247,9 +270,10 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
     
 }
@@ -257,9 +281,19 @@
 -(void)getWatchRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kWatch parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kWatch;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+    [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.TwoNewsArray.count > 0) {
@@ -272,19 +306,29 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];    }];
 
 }
 
 -(void)getDepthRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kDepth parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kDepth;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+     [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.ThreeNewsArray.count > 0) {
@@ -297,18 +341,29 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 
 }
 -(void)getOperatingRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kOperating parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kOperating;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+     [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.FourNewsArray.count > 0) {
@@ -321,19 +376,29 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];    }];
 
 }
 
 -(void)getProductRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kProduct parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kProduct;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+    [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.FiveNewsArray.count > 0) {
@@ -346,18 +411,29 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 
 }
 -(void)getTechnologyRequest{
     AFHTTPSessionManager *sessionManager =[ AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [sessionManager GET:kTechnology parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSString *url = kTechnology;
+    if (!_refreshing) {
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+    }else{
+        if (self.homeNewsArray.count > 0) {
+            [self.homeNewsArray removeAllObjects];
+        }
+    }
+     [ProgressHUD show:@"正在刷新数据..."];
+    [sessionManager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        NSLog(@"%@",responseObject);
+        [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *array = responseObject;
         if (self.refreshing) {
             if (self.SixNewsArray.count > 0) {
@@ -370,9 +446,10 @@
             //            NSLog(@"%@",self.allNewsArray);
         }
         [self selectBtn];
-        [self.mainTableView reloadData];
+//        [self.mainTableView reloadData];
+//        [self.mainTableView tableViewDidFinishedLoading];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 
 }
@@ -384,7 +461,6 @@
     UINavigationController *viewVC = [[UINavigationController alloc]initWithRootViewController:view];
     view.ActivityId = model.newsId;
     view.TypeId = model.typeId;
-//    view.title = model.title;
     view.titleStr = model.title;
     view.photoStr = model.img;
     [self.navigationController presentViewController:viewVC animated:YES completion:nil];
@@ -393,6 +469,7 @@
 #pragma mark-------------UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"%lu", self.allNewsArray.count);
     return self.allNewsArray.count;
     
 }
@@ -413,6 +490,7 @@
 //下拉
 -(void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
     self.refreshing = YES;
+//    _type = 1;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
 }
 //上拉
@@ -420,6 +498,7 @@
     if (_timeStamp > 3600*10) {
         _timeStamp-=3600*10;
     }
+//    _type = 1;
     self.refreshing = NO;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
 }

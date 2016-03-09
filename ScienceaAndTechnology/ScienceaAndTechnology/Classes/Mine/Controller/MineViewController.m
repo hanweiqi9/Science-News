@@ -15,8 +15,12 @@
 #import "LPLevelView.h"
 
 
+
 @interface MineViewController ()<MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *photoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property(nonatomic,assign) float level;
+
 @property(nonatomic,strong) UIView *score1;
 @property(nonatomic,strong) UIView *grayView;
 
@@ -29,13 +33,33 @@
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barTintColor = mainColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    self.view.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"14.jpg"]];
+    self.photoLabel.backgroundColor = [UIColor clearColor];
     SDImageCache *cache = [SDImageCache sharedImageCache];
     NSInteger cacheSize = [cache getSize];
     self.photoLabel.text = [NSString stringWithFormat:@" 清除图片缓存 (%.02fM)",(float)cacheSize/1024/1024];
+    self.scoreLabel.text = [NSString stringWithFormat:@" 给我评分"];
 
+    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    loginBtn.frame = CGRectMake(125, 100, kScreenWidth/3, kScreenWidth/3);
+    loginBtn.layer.cornerRadius=kScreenWidth/6;
+    loginBtn.clipsToBounds=YES;
+    [loginBtn setTitle:@"登陆/注册" forState:UIControlStateNormal];
+    [loginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(loginBtnActivity) forControlEvents:UIControlEventTouchUpInside];
+    loginBtn.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:loginBtn];
     
 }
+
+-(void)loginBtnActivity{
+    LoginViewController *loginView = [[LoginViewController alloc] init];
+    UINavigationController *loginVC = [[UINavigationController alloc] initWithRootViewController:loginView];
+    [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+    
+    
+}
+
 - (IBAction)removeAction:(id)sender {
     
     SDImageCache *cache = [SDImageCache sharedImageCache];
@@ -56,9 +80,6 @@
     [alter addAction:alert1];
     [alter addAction:alert2];
     [self presentViewController:alter animated:YES completion:nil];
-    
-    
-    
     
 }
 - (IBAction)gradeAction:(id)sender {
@@ -90,7 +111,7 @@
     lView.animated = YES;
     lView.level = 3.5;
     [lView setScoreBlock:^(float level) {
-        NSLog(@"打分：%f", level);
+        self.level = level;
     }];
     [self.score1 addSubview:lView];
     
@@ -106,6 +127,8 @@
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.score1 removeFromSuperview];
             [self.grayView removeFromSuperview];
+            self.scoreLabel.text = [NSString stringWithFormat:@" 给我评分 (%.f 分)",self.level];
+
         }];
         [alert1 addAction:action1];
         [self presentViewController:alert1 animated:YES completion:nil];
@@ -118,7 +141,6 @@
     [alert addAction:action];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
-    
     
 }
 
