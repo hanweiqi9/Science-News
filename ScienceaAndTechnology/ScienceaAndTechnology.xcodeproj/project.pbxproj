@@ -81,6 +81,14 @@
 		7A67DB7A1C881C35005AA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB791C881C35005AA3B7 /* Main.storyboard */; };
 		7A67DB7C1C881D05005AA3B7 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB7B1C881D05005AA3B7 /* Mine.storyboard */; };
 		7A67DB821C887B54005AA3B7 /* News.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A67DB811C887B54005AA3B7 /* News.plist */; };
+		7A78DFDA1C911ED0002B834D /* WriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFD91C911ED0002B834D /* WriteViewController.m */; };
+		7A78DFE11C911FD7002B834D /* WriteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFDF1C911FD7002B834D /* WriteTableViewCell.m */; };
+		7A78DFE21C911FD7002B834D /* WriteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A78DFE01C911FD7002B834D /* WriteTableViewCell.xib */; };
+		7A78DFE51C915661002B834D /* Shoucang.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFE41C915661002B834D /* Shoucang.m */; };
+		7A78DFE81C9156BA002B834D /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFE71C9156BA002B834D /* Model.m */; };
+		7A78DFEB1C9196B5002B834D /* ShouCangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFEA1C9196B5002B834D /* ShouCangViewController.m */; };
+		7A78DFEF1C9196DB002B834D /* ShouCangTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A78DFED1C9196DB002B834D /* ShouCangTableViewCell.m */; };
+		7A78DFF01C9196DB002B834D /* ShouCangTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A78DFEE1C9196DB002B834D /* ShouCangTableViewCell.xib */; };
 		7AA96F631C8FC099003F97E7 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7AA96F621C8FC099003F97E7 /* 11.jpg */; };
 		7AA96F661C8FCA79003F97E7 /* ForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */; };
 		7AA96F6A1C9006F1003F97E7 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA96F681C9006F1003F97E7 /* TableViewCell.m */; };
@@ -225,6 +233,20 @@
 		7A67DB791C881C35005AA3B7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7A67DB7B1C881D05005AA3B7 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		7A67DB811C887B54005AA3B7 /* News.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = News.plist; sourceTree = "<group>"; };
+		7A78DFD81C911ED0002B834D /* WriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteViewController.h; sourceTree = "<group>"; };
+		7A78DFD91C911ED0002B834D /* WriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteViewController.m; sourceTree = "<group>"; };
+		7A78DFDE1C911FD7002B834D /* WriteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteTableViewCell.h; sourceTree = "<group>"; };
+		7A78DFDF1C911FD7002B834D /* WriteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteTableViewCell.m; sourceTree = "<group>"; };
+		7A78DFE01C911FD7002B834D /* WriteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WriteTableViewCell.xib; sourceTree = "<group>"; };
+		7A78DFE31C915661002B834D /* Shoucang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shoucang.h; sourceTree = "<group>"; };
+		7A78DFE41C915661002B834D /* Shoucang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shoucang.m; sourceTree = "<group>"; };
+		7A78DFE61C9156BA002B834D /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		7A78DFE71C9156BA002B834D /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		7A78DFE91C9196B5002B834D /* ShouCangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouCangViewController.h; sourceTree = "<group>"; };
+		7A78DFEA1C9196B5002B834D /* ShouCangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouCangViewController.m; sourceTree = "<group>"; };
+		7A78DFEC1C9196DB002B834D /* ShouCangTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouCangTableViewCell.h; sourceTree = "<group>"; };
+		7A78DFED1C9196DB002B834D /* ShouCangTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouCangTableViewCell.m; sourceTree = "<group>"; };
+		7A78DFEE1C9196DB002B834D /* ShouCangTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShouCangTableViewCell.xib; sourceTree = "<group>"; };
 		7AA96F621C8FC099003F97E7 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 		7AA96F641C8FCA79003F97E7 /* ForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetViewController.h; sourceTree = "<group>"; };
 		7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetViewController.m; sourceTree = "<group>"; };
@@ -243,6 +265,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A5E85211C8AC8A100868BE1 /* libz.tbd in Frameworks */,
+				7A5E85231C8AC8AD00868BE1 /* libsqlite3.0.tbd in Frameworks */,
 				7A11BCFD1C8EC8F2002432EE /* MediaPlayer.framework in Frameworks */,
 				7A11BCFB1C8EC8E7002432EE /* AVFoundation.framework in Frameworks */,
 				7A11BD851C8EEC5A002432EE /* libWeChatSDK.a in Frameworks */,
@@ -258,8 +282,6 @@
 				7A5E85151C8AC85500868BE1 /* Security.framework in Frameworks */,
 				7A11BCEF1C8EC85E002432EE /* CoreLocation.framework in Frameworks */,
 				7A16FA141C8D7B450086C65B /* libc++.tbd in Frameworks */,
-				7A5E85231C8AC8AD00868BE1 /* libsqlite3.0.tbd in Frameworks */,
-				7A5E85211C8AC8A100868BE1 /* libz.tbd in Frameworks */,
 				7A5E851D1C8AC88600868BE1 /* Foundation.framework in Frameworks */,
 				7A5E851B1C8AC87A00868BE1 /* UIKit.framework in Frameworks */,
 				7A5E85191C8AC86D00868BE1 /* CoreText.framework in Frameworks */,
@@ -412,6 +434,10 @@
 				7A11BD721C8EEC5A002432EE /* shareView.m */,
 				7A11BD731C8EEC5A002432EE /* UIViewController+Common.h */,
 				7A11BD741C8EEC5A002432EE /* UIViewController+Common.m */,
+				7A78DFE31C915661002B834D /* Shoucang.h */,
+				7A78DFE41C915661002B834D /* Shoucang.m */,
+				7A78DFE61C9156BA002B834D /* Model.h */,
+				7A78DFE71C9156BA002B834D /* Model.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -571,6 +597,8 @@
 				7A67DB701C881970005AA3B7 /* MainViewController.m */,
 				7A1BD5D11C89CC7700AF98C6 /* ViewController.h */,
 				7A1BD5D21C89CC7700AF98C6 /* ViewController.m */,
+				7A78DFE91C9196B5002B834D /* ShouCangViewController.h */,
+				7A78DFEA1C9196B5002B834D /* ShouCangViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -595,6 +623,9 @@
 				7A1BD5BD1C89333000AF98C6 /* NewsTableViewCell.h */,
 				7A1BD5BE1C89333000AF98C6 /* NewsTableViewCell.m */,
 				7A1BD5BF1C89333000AF98C6 /* NewsTableViewCell.xib */,
+				7A78DFEC1C9196DB002B834D /* ShouCangTableViewCell.h */,
+				7A78DFED1C9196DB002B834D /* ShouCangTableViewCell.m */,
+				7A78DFEE1C9196DB002B834D /* ShouCangTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -622,6 +653,8 @@
 				7AA96F651C8FCA79003F97E7 /* ForgetViewController.m */,
 				7AA96F6E1C9061C1003F97E7 /* EmailViewController.h */,
 				7AA96F6F1C9061C1003F97E7 /* EmailViewController.m */,
+				7A78DFD81C911ED0002B834D /* WriteViewController.h */,
+				7A78DFD91C911ED0002B834D /* WriteViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -641,6 +674,9 @@
 				7A11BCE71C8EA5A6002432EE /* Register.storyboard */,
 				7A11BD9B1C8EEF7A002432EE /* ScoreView.h */,
 				7A11BD9C1C8EEF7A002432EE /* ScoreView.m */,
+				7A78DFDE1C911FD7002B834D /* WriteTableViewCell.h */,
+				7A78DFDF1C911FD7002B834D /* WriteTableViewCell.m */,
+				7A78DFE01C911FD7002B834D /* WriteTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -767,7 +803,9 @@
 				7A11BCE61C8EA588002432EE /* Login.storyboard in Resources */,
 				7A11BD911C8EECB5002432EE /* ProgressHUD.bundle in Resources */,
 				7A11BCDE1C8E674C002432EE /* tupian@2x.png in Resources */,
+				7A78DFF01C9196DB002B834D /* ShouCangTableViewCell.xib in Resources */,
 				7A11BD821C8EEC5A002432EE /* blueArrow.png in Resources */,
+				7A78DFE21C911FD7002B834D /* WriteTableViewCell.xib in Resources */,
 				7A16FA071C8D51E80086C65B /* 01.plist in Resources */,
 				7A5E84F81C8A83AC00868BE1 /* Activity.plist in Resources */,
 				7A67DB431C881149005AA3B7 /* LaunchScreen.storyboard in Resources */,
@@ -865,18 +903,23 @@
 				7A16FA041C8D4EA20086C65B /* DiscoverTableViewCell.m in Sources */,
 				7AA96F661C8FCA79003F97E7 /* ForgetViewController.m in Sources */,
 				7A67DB3E1C881149005AA3B7 /* AppDelegate.m in Sources */,
+				7A78DFE51C915661002B834D /* Shoucang.m in Sources */,
 				7A16F9FE1C8D052B0086C65B /* DiscoverViewController.m in Sources */,
+				7A78DFE11C911FD7002B834D /* WriteTableViewCell.m in Sources */,
 				7A11BD871C8EEC5A002432EE /* HWTools.m in Sources */,
 				7A11BD881C8EEC5A002432EE /* shareView.m in Sources */,
 				7A11BD841C8EEC5A002432EE /* PullingRefreshTableView.m in Sources */,
 				7A11BD971C8EECD0002432EE /* LPLevelView.m in Sources */,
+				7A78DFEB1C9196B5002B834D /* ShouCangViewController.m in Sources */,
 				7A11BD921C8EECB5002432EE /* ProgressHUD.m in Sources */,
 				7A16FA171C8D9C150086C65B /* LineViewController.m in Sources */,
 				7A67DB711C881970005AA3B7 /* MainViewController.m in Sources */,
 				7A1BD5D31C89CC7700AF98C6 /* ViewController.m in Sources */,
 				7A11BCE41C8EA52A002432EE /* RegisterViewController.m in Sources */,
 				7A11BD8C1C8EEC5A002432EE /* VOSegment.m in Sources */,
+				7A78DFE81C9156BA002B834D /* Model.m in Sources */,
 				7A11BD9D1C8EEF7A002432EE /* ScoreView.m in Sources */,
+				7A78DFEF1C9196DB002B834D /* ShouCangTableViewCell.m in Sources */,
 				7AA96F701C9061C1003F97E7 /* EmailViewController.m in Sources */,
 				7A11BD8A1C8EEC5A002432EE /* VOContentLayer.m in Sources */,
 				7A11BCE11C8EA510002432EE /* LoginViewController.m in Sources */,
@@ -888,6 +931,7 @@
 				7A67DB3B1C881149005AA3B7 /* main.m in Sources */,
 				7A67DB741C881991005AA3B7 /* MineViewController.m in Sources */,
 				7A1BD5AC1C890F8700AF98C6 /* newsModel.m in Sources */,
+				7A78DFDA1C911ED0002B834D /* WriteViewController.m in Sources */,
 				7A11BD8D1C8EEC5A002432EE /* VOSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1026,13 +1070,14 @@
 				);
 				GCC_PREFIX_HEADER = "/Users/scjy/Desktop/Science-News/ScienceaAndTechnology/ScienceaAndTechnology/Library/Tool/Main.pch";
 				INFOPLIST_FILE = ScienceaAndTechnology/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScienceaAndTechnology/Library/libWeiboSDK",
 					"$(PROJECT_DIR)/ScienceaAndTechnology/Library/SDK1.6-2.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MangoInc.ScienceaAndTechnology;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MangoInc.hanweiqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1048,13 +1093,14 @@
 				);
 				GCC_PREFIX_HEADER = "/Users/scjy/Desktop/Science-News/ScienceaAndTechnology/ScienceaAndTechnology/Library/Tool/Main.pch";
 				INFOPLIST_FILE = ScienceaAndTechnology/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScienceaAndTechnology/Library/libWeiboSDK",
 					"$(PROJECT_DIR)/ScienceaAndTechnology/Library/SDK1.6-2.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MangoInc.ScienceaAndTechnology;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MangoInc.hanweiqi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

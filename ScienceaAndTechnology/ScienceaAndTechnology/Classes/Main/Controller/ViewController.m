@@ -10,11 +10,13 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "WeiboSDK.h"
 #import "shareView.h"
+#import "Shoucang.h"
 
 @interface ViewController ()
 @property(nonatomic,strong) UIView *shareView;
 @property(nonatomic,strong) UIView *grayView;
 @property(nonatomic,strong) NSString *urlString;
+@property(nonatomic,strong) UIWebView *webView;
 
 @end
 
@@ -25,16 +27,25 @@
     // Do any additional setup after loading the view.
     
    self.navigationController.navigationBar.barTintColor = mainColor;
-    self.webView = [[UIWebView alloc]initWithFrame:self.view.frame];
+    self.webView = [[UIWebView alloc]initWithFrame:self.view.bounds];
     self.webView.dataDetectorTypes = UIDataDetectorTypeAll;
+    self.webView.scalesPageToFit = YES;
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, 0, 20, 20);
     [rightBtn setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(shareActivityAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    self.navigationItem.rightBarButtonItem = rightBarBtn;
+//    self.navigationItem.rightBarButtonItem = rightBarBtn;
     
+    UIButton *twoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    twoBtn.frame = CGRectMake(40, 0, 20, 20);
+    [twoBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
+    [twoBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightTwoBtn = [[UIBarButtonItem alloc] initWithCustomView:twoBtn];
+    NSArray *rightBtns = @[rightTwoBtn,rightBarBtn];
+    self.navigationItem.rightBarButtonItems = rightBtns;
+
     [self.view addSubview:self.webView];
     [self backBtn];
     [self loadString:self.ActivityId];
@@ -81,6 +92,19 @@
 //-(void)photoString:(NSString *)photo{
 //    self.photoStr = [photo substringToIndex:61];
 //}
+
+-(void)like{
+   [Shoucang sharedInstance];
+    Model *model = [[Model alloc] init];
+    model.title = self.titleStr;
+    model.subTitle = self.subTitle;
+    model.Titleimage = self.photoStr;
+    NSLog(@"%@",model.title);
+    
+//    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已收藏" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
+//    [self.view addSubview:view];
+    
+}
 
 -(void)shareActivityAction:(UIButton *)btn{
     

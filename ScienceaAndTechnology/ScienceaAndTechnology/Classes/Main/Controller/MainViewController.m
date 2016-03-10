@@ -51,7 +51,6 @@
     [self.view addSubview:self.segmentedControl];
     
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-//    _type = 0;
     _timeStamp = [HWTools getTimesTamp];
     [self.mainTableView registerNib:[UINib nibWithNibName:@"NewsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 
@@ -209,7 +208,7 @@
     AFHTTPSessionManager *sessionManage =[AFHTTPSessionManager manager];
     sessionManage.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kHomepage;
-    if (!_refreshing) {
+    if (!self.refreshing) {
       url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
         if (self.allNewsArray.count > 0) {
@@ -223,8 +222,8 @@
         [ProgressHUD showSuccess:@"加载完成..."];
         NSArray *newsArray = responseObject;
         if (self.refreshing) {
-            if (self.homeNewsArray.count > 0) {
-                [self.homeNewsArray removeAllObjects];
+            if (self.OneNewsArray.count > 0) {
+                [self.OneNewsArray removeAllObjects];
             }
         }
         for (NSDictionary *dic in newsArray) {
@@ -249,8 +248,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
     [ProgressHUD show:@"正在刷新数据..."];
@@ -285,8 +284,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
     [ProgressHUD show:@"正在刷新数据..."];
@@ -320,8 +319,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
      [ProgressHUD show:@"正在刷新数据..."];
@@ -355,8 +354,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
      [ProgressHUD show:@"正在刷新数据..."];
@@ -390,8 +389,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
     [ProgressHUD show:@"正在刷新数据..."];
@@ -425,8 +424,8 @@
     if (!_refreshing) {
         url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
     }else{
-        if (self.homeNewsArray.count > 0) {
-            [self.homeNewsArray removeAllObjects];
+        if (self.allNewsArray.count > 0) {
+            [self.allNewsArray removeAllObjects];
         }
     }
      [ProgressHUD show:@"正在刷新数据..."];
@@ -463,6 +462,7 @@
     view.TypeId = model.typeId;
     view.titleStr = model.title;
     view.photoStr = model.img;
+    view.subTitle = model.summ;
     [self.navigationController presentViewController:viewVC animated:YES completion:nil];
 }
 
@@ -490,7 +490,7 @@
 //下拉
 -(void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
     self.refreshing = YES;
-//    _type = 1;
+    _type = 0;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
 }
 //上拉
@@ -498,7 +498,7 @@
     if (_timeStamp > 3600*10) {
         _timeStamp-=3600*10;
     }
-//    _type = 1;
+    _type +=1;
     self.refreshing = NO;
     [self performSelector:@selector(segmentCtrlValuechange) withObject:nil afterDelay:1.0];
 }

@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "ScoreView.h"
 #import "LPLevelView.h"
+#import "ShouCangViewController.h"
 
 
 
@@ -68,19 +69,25 @@
 }
 
 - (IBAction)userAction:(id)sender {    
-    UIAlertController *alter =  [UIAlertController alertControllerWithTitle:@"提示" message:@"是否需要登录" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alert1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-    }];
-    UIAlertAction *alert2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        LoginViewController *login =[[LoginViewController alloc] init];
-        UINavigationController *loginVC = [[UINavigationController alloc] initWithRootViewController:login];
-        [self.navigationController presentViewController:loginVC animated:YES completion:nil];
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
+    if (mailClass != nil) {
+        if ([MFMailComposeViewController canSendMail]) {
+            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+            picker.mailComposeDelegate = self;
+            [picker setSubject:@"用户反馈"];
+            NSArray *toPerson = [NSArray arrayWithObjects:@"1072502398@qq.com", nil];
+            [picker setToRecipients:toPerson];
+            NSString *text = @"请留下你的宝贵意见";
+            [picker setMessageBody:text isHTML:NO];
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+        else{
+            [ProgressHUD showError:@"您的设备尚未配置邮件账号"];
+        }
+    }else{
+        [ProgressHUD showError:@"您的设备不支持邮件功能"];
+    }
 
-    }];
-    [alter addAction:alert1];
-    [alter addAction:alert2];
-    [self presentViewController:alter animated:YES completion:nil];
-    
 }
 - (IBAction)gradeAction:(id)sender {
 //    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app"];
@@ -152,6 +159,12 @@
 
 -(void)check{
     [ProgressHUD showSuccess:@"当前已是最新版本..."];
+}
+- (IBAction)shoucangBtn:(id)sender {
+    ShouCangViewController *shoucang = [[ShouCangViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:shoucang];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {

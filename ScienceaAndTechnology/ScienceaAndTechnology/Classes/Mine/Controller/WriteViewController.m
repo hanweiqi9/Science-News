@@ -1,12 +1,12 @@
 //
-//  DiscoverViewController.m
+//  WriteViewController.m
 //  ScienceaAndTechnology
 //
-//  Created by scjy on 16/3/7.
+//  Created by scjy on 16/3/10.
 //  Copyright © 2016年 韩苇棋. All rights reserved.
 //
 
-#import "DiscoverViewController.h"
+#import "WriteViewController.h"
 #import "PullingRefreshTableView.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "DiscoverTableViewCell.h"
@@ -14,10 +14,10 @@
 #import "HWTools.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LineViewController.h"
-#import "TableViewCell.h"
+#import "WriteTableViewCell.h"
 #import "ProgressHUD.h"
 
-@interface DiscoverViewController ()<PullingRefreshTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface WriteViewController ()<PullingRefreshTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong) PullingRefreshTableView *tableView;
 @property(nonatomic,strong) NSMutableArray *detailsArray;//详情
 @property(nonatomic,strong) NSMutableArray *topArray;//大图
@@ -27,25 +27,27 @@
 @property(nonatomic,strong) NSMutableArray *allArray;
 @property(nonatomic,assign) BOOL refreshing;
 
-
 @end
 
-@implementation DiscoverViewController
+@implementation WriteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationController.navigationBar.barTintColor = mainColor;
+    self.navigationItem.title = @"特写";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"DiscoverTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WriteTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     [self.view addSubview:self.tableView];
     [self requestLoad];
     [self.tableView launchRefreshing];
+    [self backBtn];
     
 
 }
+
 #pragma mark------------Lazy
 
 -(NSMutableArray *)detailsArray{
@@ -94,7 +96,7 @@
         self.tableView.pullingDelegate = self;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.rowHeight = 85;
+        self.tableView.rowHeight = 217;
         self.tableView.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
         [self.view addSubview:self.tableView];
     }
@@ -109,9 +111,9 @@
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     [ProgressHUD show:@"正在加载中..."];
-    [sessionManager GET:kFinancial parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [sessionManager GET:kCloseup parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-       // NSLog(@"%@",responseObject);
+//         NSLog(@"%@",responseObject);
         [ProgressHUD showSuccess:@"加载完成"];
         NSDictionary *dic = responseObject;
         NSArray *artArray = dic[@"articletag"];
@@ -125,7 +127,7 @@
             
             for (NSDictionary *dicm in arr) {
                 [self.TitleArray addObject:dicm[@"title"]];//标题
-//                NSLog(@"han = %@",self.TitleArray);
+                //                NSLog(@"han = %@",self.TitleArray);
                 [self.subArray addObject:dicm[@"desc"]];
                 NSArray *arra = dicm[@"phonepagelist"];
                 NSArray *arra1 = dicm[@"picture"];
@@ -139,16 +141,16 @@
                 
                 for (NSDictionary *dicme2 in arra2) {
                     [self.photoArray addObject:dicme2[@"url"]];//图片
-//                    NSLog(@"photo = %@",self.photoArray);
+                    //                    NSLog(@"photo = %@",self.photoArray);
                 }
             }
         }
         [self.tableView reloadData];
         [self.tableView tableViewDidFinishedLoading];
         self.tableView.reachedTheEnd = NO;
-
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-       [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
 }
 
@@ -159,13 +161,13 @@
 #pragma mark-------------UITableViewDataSource
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DiscoverTableViewCell *cell =[self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        cell.titleLabel.text = self.TitleArray[indexPath.row];
-        [cell.photoView sd_setImageWithURL:[NSURL URLWithString:self.photoArray[indexPath.row]] placeholderImage:nil];
-        cell.subLabel.text = self.subArray[indexPath.row];
-        cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
+    WriteTableViewCell *cell =[self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.titleLabel.text = self.TitleArray[indexPath.row];
+    [cell.topImage sd_setImageWithURL:[NSURL URLWithString:self.photoArray[indexPath.row]] placeholderImage:nil];
+    cell.subTile.text = self.subArray[indexPath.row];
+    cell.backgroundColor = [UIColor colorWithRed:237/255.0 green:237/255.0 blue:237/255.0 alpha:1.0];
     
-  return cell;
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -204,7 +206,6 @@
     [self.tableView tableViewDidEndDragging:scrollView];
     
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

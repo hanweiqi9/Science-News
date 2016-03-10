@@ -52,10 +52,10 @@ typedef NS_ENUM(NSInteger,DiscoverListType) {
 //金融
 #define kFinancial @"http://content.cdn.bb.bbwc.cn/slateInterface/v7/app_1/android/tag/cat_12/articlelist?updatetime=1454062401"
 //特写
-#define kCloseup @" http://content.cdn.bb.bbwc.cn/slateInterface/v7/app_1/android/tag/cat_18/articlelist?updatetime=1454062401"
+#define kCloseup @"http://content.cdn.bb.bbwc.cn/slateInterface/v7/app_1/android/tag/cat_18/articlelist?updatetime=1454062401"
 
 //视频
-#define kVideo @" http://content.cdn.bb.bbwc.cn/slateInterface/v7/app_1/android/tag/cat_14/articlelist?updatetime=1454062401"
+#define kVideo @"http://content.cdn.bb.bbwc.cn/slateInterface/v7/app_1/android/tag/cat_14/articlelist?updatetime=1454062401"
 
 #define kAppKey @"4045536466"
 #define kRedirectURI @"https://api.weibo.com/oauth2/default.html"

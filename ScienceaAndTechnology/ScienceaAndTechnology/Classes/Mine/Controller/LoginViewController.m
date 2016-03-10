@@ -13,6 +13,7 @@
 #import <MessageUI/MessageUI.h>
 #import "ForgetViewController.h"
 #import "EmailViewController.h"
+#import "WriteViewController.h"
 
 @interface LoginViewController ()<UITextFieldDelegate,MFMailComposeViewControllerDelegate>
 @property(nonatomic,strong) UITextField *userName;
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.view.backgroundColor = [UIColor whiteColor];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"11.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"14.jpg"]];
     
     self.navigationController.navigationBar.barTintColor = mainColor;
     self.navigationItem.title = @"登录";
@@ -126,29 +127,16 @@
         [ProgressHUD show:@"正在为您登录，请稍等 ..."];
         if (user) {
             [ProgressHUD showSuccess:@"登录成功"];
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"已成功登录" message:@"是否留下反馈意见" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"登陆成功" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *alert1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             }];
             UIAlertAction *alert2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));
-                    if (mailClass != nil) {
-                        if ([MFMailComposeViewController canSendMail]) {
-                            MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
-                            picker.mailComposeDelegate = self;
-                            [picker setSubject:@"用户反馈"];
-                            NSArray *toPerson = [NSArray arrayWithObjects:@"1072502398@qq.com", nil];
-                            [picker setToRecipients:toPerson];
-                            NSString *text = @"请留下你的宝贵意见";
-                            [picker setMessageBody:text isHTML:NO];
-                            [self presentViewController:picker animated:YES completion:nil];
-                        }
-                        else{
-                            [ProgressHUD showError:@"您的设备尚未配置邮件账号"];
-                        }
-                    }else{
-                        [ProgressHUD showError:@"您的设备不支持邮件功能"];
-                    }
-
+                
+                WriteViewController *write = [[WriteViewController alloc] init];
+                UINavigationController *writeVC = [[UINavigationController alloc] initWithRootViewController:write];
+                [self.navigationController presentViewController:writeVC animated:YES completion:nil];
+                
+               
             }];
             [alert addAction:alert1];
             [alert addAction:alert2];

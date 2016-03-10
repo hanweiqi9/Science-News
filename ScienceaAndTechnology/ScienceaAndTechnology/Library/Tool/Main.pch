@@ -15,6 +15,7 @@
 #import "Hearder.h"
 #import "UIViewController+Common.h"
 #import "shareView.h"
+#import "Shoucang.h"
 
 
 

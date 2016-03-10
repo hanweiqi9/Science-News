@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"11.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"14.jpg"]];
     self.navigationController.navigationBar.barTintColor = mainColor;
     self.navigationItem.title = @"注册";
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0],NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -71,6 +71,15 @@
     self.emailText.delegate=self;
     [self.view addSubview:self.emailText];
     
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+//    button.frame = CGRectMake(55, 310, kScreenWidth-110, 40);
+//    [button setBackgroundColor:mainColor];
+//    [button setTitle:@"验证邮箱" forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(emailAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
+//    [self.view addSubview:button];
+    
     
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
     button1.frame = CGRectMake(55, 380, kScreenWidth-110, 44);
@@ -82,6 +91,17 @@
     [self.view addSubview:button1];
 
 }
+
+//-(void)emailAction{
+//    BmobUser *user = [BmobUser getCurrentUser];
+//    //应用开启了邮箱验证功能
+//    if ([user objectForKey:@"emailVerified"]) {
+//        //用户没验证过邮箱
+//        if (![[user objectForKey:@"emailVerified"] boolValue]) {
+//            [user verifyEmailInBackgroundWithEmailAddress:self.emailText.text];
+//        }
+//    }
+//}
 
 -(void)zhuce{
     if (![self checkout]) {
@@ -168,11 +188,9 @@
     return YES;
 }
 
--(BOOL)isValidateEmail:(NSString *)email
-{
-    self.emailText.text = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",self.emailText.text];
+-(BOOL)isValidateEmail:(NSString *)email {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:email];
 }
 
