@@ -10,4 +10,14 @@
 
 @implementation Model
 
+-(instancetype)initWithDictionary:(NSMutableDictionary *)dic{
+    self = [super init];
+    if (self) {
+        self.title = dic[@"title"];
+        self.Titleimage = dic[@"imag"];
+        self.subTitle = dic[@"subTitle"];
+    }
+    return self;
+}
+
 @end

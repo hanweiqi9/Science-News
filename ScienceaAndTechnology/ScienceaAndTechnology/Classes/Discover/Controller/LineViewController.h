@@ -12,5 +12,7 @@
 @property(nonatomic,strong) UIWebView *WebView;
 @property(nonatomic,copy) NSString *urlStr;
 @property(nonatomic,copy) NSString *titleStr;
+@property(nonatomic,copy) NSString *topimage;
+@property(nonatomic,copy) NSString *subtitle;
 
 @end

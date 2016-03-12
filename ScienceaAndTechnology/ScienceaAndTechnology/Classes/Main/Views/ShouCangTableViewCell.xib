@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -14,11 +15,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="384" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jRP-GP-WuS">
-                        <rect key="frame" x="14" y="16" width="112" height="96"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-RA-tkc">
-                        <rect key="frame" x="134" y="16" width="225" height="33"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdO-7a-kaZ">
+                        <rect key="frame" x="8" y="8" width="360" height="112"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owV-RA-tkc">
+                        <rect key="frame" x="121" y="16" width="238" height="33"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="2ja-wo-e46"/>
+                            <constraint firstAttribute="width" constant="238" id="C2F-rM-BvP"/>
+                        </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
@@ -29,8 +39,13 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV6-gP-RXg">
-                        <rect key="frame" x="134" y="64" width="225" height="48"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV6-gP-RXg">
+                        <rect key="frame" x="121" y="64" width="238" height="48"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="U0s-qJ-mgG"/>
+                            <constraint firstAttribute="width" constant="238" id="cRf-i4-lhB"/>
+                        </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
@@ -41,18 +56,29 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UdO-7a-kaZ">
-                        <rect key="frame" x="8" y="8" width="360" height="112"/>
-                        <color key="backgroundColor" red="1" green="0.7384037376" blue="0.86477612989999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="49z-vC-lEr">
+                        <rect key="frame" x="13" y="12" width="105" height="104"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="105" id="LYS-d4-deC"/>
+                            <constraint firstAttribute="height" constant="104" id="t0b-b1-ceY"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="fV6-gP-RXg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="113" id="1nd-N1-ASO"/>
+                    <constraint firstItem="49z-vC-lEr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="204-WQ-KS0"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="fV6-gP-RXg" secondAttribute="bottom" constant="8" id="CRO-vq-u3k"/>
+                    <constraint firstAttribute="leadingMargin" secondItem="UdO-7a-kaZ" secondAttribute="leading" id="IE6-nt-qpH"/>
+                    <constraint firstAttribute="topMargin" secondItem="UdO-7a-kaZ" secondAttribute="top" id="Obh-bz-9pE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="UdO-7a-kaZ" secondAttribute="bottom" id="POU-rk-w9V"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="49z-vC-lEr" secondAttribute="bottom" constant="4" id="QPw-I9-FLt"/>
+                    <constraint firstItem="owV-RA-tkc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="113" id="QRC-fl-GUe"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="owV-RA-tkc" secondAttribute="bottom" constant="71" id="e7K-Ba-54L"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="UdO-7a-kaZ" secondAttribute="trailing" constant="8" id="efW-9S-I8M"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imageView" destination="jRP-GP-WuS" id="AZb-O9-llM"/>
-                <outlet property="imagetop" destination="jRP-GP-WuS" id="vLW-CW-gly"/>
+                <outlet property="imagetop" destination="49z-vC-lEr" id="sMz-k8-ZDb"/>
                 <outlet property="subTitle" destination="fV6-gP-RXg" id="BhX-X1-XRh"/>
                 <outlet property="title" destination="owV-RA-tkc" id="A8i-dx-EkA"/>
             </connections>

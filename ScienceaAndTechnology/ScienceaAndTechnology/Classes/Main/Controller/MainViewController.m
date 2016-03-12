@@ -126,7 +126,7 @@
 -(VOSegmentedControl *)segmentedControl{
     if (_segmentedControl == nil) {
         self.segmentedControl = [[VOSegmentedControl alloc]initWithSegments:@[@{VOSegmentText:@"最新"},@{VOSegmentText:@"业界"},@{VOSegmentText:@"看点"},@{VOSegmentText:@"深度"},@{VOSegmentText:@"运营"},@{VOSegmentText:@"产品"},@{VOSegmentText:@"技术"}]];
-        self.segmentedControl.frame = CGRectMake(0, 64, kScreenWidth, 44);
+        self.segmentedControl.frame = CGRectMake(0, 64, kScreenWidth, kScreenHeight * 44/667);
         self.segmentedControl.contentStyle = VOContentStyleTextAlone;
         self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
         
@@ -147,7 +147,7 @@
 
 -(PullingRefreshTableView *)mainTableView{
     if (_mainTableView == nil) {
-        self.mainTableView = [[PullingRefreshTableView alloc]initWithFrame:CGRectMake(0, 44+64, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        self.mainTableView = [[PullingRefreshTableView alloc]initWithFrame:CGRectMake(0, kScreenHeight * 44/667 + 64, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
         self.mainTableView.pullingDelegate = self;
         self.mainTableView.delegate = self;
         self.mainTableView.dataSource = self;
@@ -209,7 +209,7 @@
     sessionManage.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kHomepage;
     if (!self.refreshing) {
-      url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+      url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -246,7 +246,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kIndustry;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -282,7 +282,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kWatch;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -317,7 +317,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kDepth;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -352,7 +352,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kOperating;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -387,7 +387,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kProduct;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -422,7 +422,7 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *url = kTechnology;
     if (!_refreshing) {
-        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",_timeStamp,_type]];
+        url = [url stringByAppendingString:[NSString stringWithFormat:@"/time/%lu/type/%lu",(long)_timeStamp,(long)_type]];
     }else{
         if (self.allNewsArray.count > 0) {
             [self.allNewsArray removeAllObjects];
@@ -469,7 +469,7 @@
 #pragma mark-------------UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"%lu", self.allNewsArray.count);
+    NSLog(@"%lu", (unsigned long)self.allNewsArray.count);
     return self.allNewsArray.count;
     
 }

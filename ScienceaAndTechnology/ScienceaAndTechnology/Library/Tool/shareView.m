@@ -73,19 +73,6 @@
     [self.shareView addSubview:circleLabel];
     [self.shareView addSubview:CircleBtn];
     
-    //    //短信
-    //    UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    //    messageBtn.frame = CGRectMake(30, 120, 70, 70);
-    //    [messageBtn setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-    //    [messageBtn addTarget:self action:@selector(messageActivity) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //    UILabel *messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 165, 100, 44)];
-    //    messageLabel.text = @"短信";
-    //    messageLabel.font = [UIFont systemFontOfSize:13.0];
-    //    messageLabel.textAlignment = NSTextAlignmentCenter;
-    //    [self.shareView addSubview:messageBtn];
-    //    [self.shareView addSubview:messageLabel];
-    
     
     //取消
     UIButton *removeBtn = [UIButton buttonWithType:UIButtonTypeCustom];

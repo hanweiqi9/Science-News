@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ShouCangViewController : UIViewController
-@property(nonatomic,strong) Model *model;
 
 @end

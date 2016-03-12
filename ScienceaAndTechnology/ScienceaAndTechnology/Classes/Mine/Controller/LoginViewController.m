@@ -35,21 +35,21 @@
 
     [self backBtn];
     
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(50, 150, 80, 30)];
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth * 2/15, kScreenHeight * 6/15, kScreenWidth * 16/75, kScreenHeight * 6/75)];
     text.text = @"用户名";
     text.textColor = [UIColor blackColor];
     [self.view addSubview:text];
-    self.userName = [[UITextField alloc]initWithFrame:CGRectMake(135, 150, 200, 30)];
+    self.userName = [[UITextField alloc]initWithFrame:CGRectMake(kScreenWidth * 27/75, kScreenHeight * 6/15, kScreenWidth * 8/15, kScreenHeight * 6/75)];
     self.userName.placeholder = @"请输入用户名";
     self.userName.borderStyle = UITextBorderStyleRoundedRect;
     self.userName.delegate=self;
     [self.view addSubview:self.userName];
     
-    UILabel *text2 = [[UILabel alloc] initWithFrame:CGRectMake(50, 190, 80, 30)];
+    UILabel *text2 = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth * 2/15, kScreenHeight * 38/75, kScreenWidth * 16/75, kScreenHeight * 6/75)];
     text2.text = @"密 码";
     text2.textColor = [UIColor blackColor];
     [self.view addSubview:text2];
-    self.userPassword = [[UITextField alloc] initWithFrame:CGRectMake(135, 190, 200, 30)];
+    self.userPassword = [[UITextField alloc] initWithFrame:CGRectMake(kScreenWidth * 27/75, kScreenHeight * 38/75, kScreenWidth * 8/15, kScreenHeight * 6/15)];
     self.userPassword.placeholder = @"请输入密码";
     self.userPassword.borderStyle = UITextBorderStyleRoundedRect;
     self.userPassword.secureTextEntry = YES;
@@ -57,7 +57,7 @@
     [self.view addSubview:self.userPassword];
     
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button1.frame = CGRectMake(55, 280, kScreenWidth-110, 44);
+    button1.frame = CGRectMake(kScreenWidth * 55/375,kScreenHeight * 280/667, kScreenWidth- kScreenWidth * 110/375, kScreenHeight * 44/667);
     [button1 setBackgroundColor:mainColor];
     [button1 setTitle:@"登  陆" forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
@@ -66,7 +66,7 @@
     [self.view addSubview:button1];
 
     UIButton *button2 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button2.frame = CGRectMake(55, 340, kScreenWidth-110, 44);
+    button2.frame = CGRectMake(kScreenWidth * 55/375, kScreenHeight * 340/667, kScreenWidth- kScreenWidth * 110/375, kScreenHeight * 44/667);
     [button2 setBackgroundColor:mainColor];
     [button2 setTitle:@"注  册" forState:UIControlStateNormal];
     [button2 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -75,7 +75,7 @@
     [self.view addSubview:button2];
     
     UIButton *button4 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button4.frame = CGRectMake(280, 600, 80, 44);
+    button4.frame = CGRectMake(kScreenWidth * 280/375, kScreenHeight * 600/667, kScreenWidth * 80/375, kScreenHeight * 44/667);
     [button4 setBackgroundColor:[UIColor clearColor]];
     [button4 setTitle:@"忘记密码？" forState:UIControlStateNormal];
     [button4 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -84,7 +84,7 @@
 
     
     UIButton *button3 = [UIButton buttonWithType:UIButtonTypeSystem];
-    button3.frame = CGRectMake(30, 600, 80, 44);
+    button3.frame = CGRectMake(kScreenWidth * 30/375, kScreenHeight * 600/667, kScreenWidth * 80/375, kScreenHeight * 44/667);
     [button3 setBackgroundColor:[UIColor clearColor]];
     [button3 setTitle:@"重置密码？" forState:UIControlStateNormal];
     [button3 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];

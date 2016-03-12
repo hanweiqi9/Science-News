@@ -32,14 +32,14 @@
     self.webView.scalesPageToFit = YES;
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 0, 20, 20);
+    rightBtn.frame = CGRectMake(0, 0,kScreenWidth * 20/375,kScreenHeight * 20/667);
     [rightBtn setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
     [rightBtn addTarget:self action:@selector(shareActivityAction:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarBtn = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 //    self.navigationItem.rightBarButtonItem = rightBarBtn;
     
     UIButton *twoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    twoBtn.frame = CGRectMake(40, 0, 20, 20);
+    twoBtn.frame = CGRectMake(kScreenWidth * 40/375, 0,kScreenWidth * 20/375,kScreenHeight * 20/667);
     [twoBtn setImage:[UIImage imageNamed:@"like"] forState:UIControlStateNormal];
     [twoBtn addTarget:self action:@selector(like) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightTwoBtn = [[UIBarButtonItem alloc] initWithCustomView:twoBtn];
@@ -94,15 +94,18 @@
 //}
 
 -(void)like{
-   [Shoucang sharedInstance];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"收藏已成功" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    Shoucang *manager = [Shoucang sharedInstance];
     Model *model = [[Model alloc] init];
     model.title = self.titleStr;
     model.subTitle = self.subTitle;
     model.Titleimage = self.photoStr;
     NSLog(@"%@",model.title);
-    
-//    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已收藏" delegate:self cancelButtonTitle:nil otherButtonTitles:nil, nil];
-//    [self.view addSubview:view];
+    [manager insertIntoNewModel:model];
+    }];
+    [alert addAction:action];
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

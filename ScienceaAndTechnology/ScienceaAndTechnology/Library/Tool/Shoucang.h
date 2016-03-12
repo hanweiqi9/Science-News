@@ -31,4 +31,8 @@
 
 //查询 所有联系人
 - (NSMutableArray *)select;
+
+//删除
+-(void)deleteModelTitle:(NSString *)title;
+
 @end

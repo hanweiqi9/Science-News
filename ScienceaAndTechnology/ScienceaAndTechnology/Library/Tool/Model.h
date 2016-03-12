@@ -13,4 +13,6 @@
 @property(nonatomic,retain) NSString *subTitle;
 @property(nonatomic,retain) NSString *Titleimage;
 
+-(instancetype)initWithDictionary:(NSMutableDictionary *)dic;
+
 @end

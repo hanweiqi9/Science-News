@@ -90,7 +90,7 @@
 }
 -(PullingRefreshTableView *)tableView{
     if (_tableView == nil) {
-        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0,64, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
         self.tableView.pullingDelegate = self;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -172,6 +172,9 @@
     LineViewController *lineVC = [[LineViewController alloc] init];
     UINavigationController *LineNV =[[UINavigationController alloc] initWithRootViewController:lineVC];
     lineVC.urlStr = self.detailsArray[indexPath.row];
+    lineVC.title = self.TitleArray[indexPath.row];
+    lineVC.topimage = self.photoArray[indexPath.row];
+    lineVC.subtitle = self.subArray[indexPath.row];
     [self.navigationController presentViewController:LineNV animated:YES completion:nil];
 }
 

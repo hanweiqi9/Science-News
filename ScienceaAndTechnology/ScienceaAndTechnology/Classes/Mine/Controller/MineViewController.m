@@ -42,7 +42,7 @@
     self.scoreLabel.text = [NSString stringWithFormat:@" 给我评分"];
 
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    loginBtn.frame = CGRectMake(125, 100, kScreenWidth/3, kScreenWidth/3);
+    loginBtn.frame = CGRectMake(kScreenWidth * 1/3, kScreenHeight * 4/15, kScreenWidth/3, kScreenWidth/3);
     loginBtn.layer.cornerRadius=kScreenWidth/6;
     loginBtn.clipsToBounds=YES;
     [loginBtn setTitle:@"登陆/注册" forState:UIControlStateNormal];
@@ -98,12 +98,12 @@
     self.grayView.alpha = 0.5;
     [self.view addSubview:self.grayView];
     
-    self.score1 = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-300, kScreenWidth, 400)];
+    self.score1 = [[UIView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kScreenHeight * 300/667, kScreenWidth,kScreenHeight * 400/667)];
     self.score1.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.score1];
     
     UIButton *removeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    removeBtn.frame = CGRectMake(20, 200, kScreenWidth-40, 40);
+    removeBtn.frame = CGRectMake(kScreenWidth * 4/75,kScreenHeight * 200/667, kScreenWidth- kScreenWidth * 8/75,kScreenHeight * 40/667);
     [removeBtn setTitle:@"评分" forState:UIControlStateNormal];
     [removeBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [removeBtn addTarget:self action:@selector(last ) forControlEvents:UIControlEventTouchUpInside];
@@ -111,9 +111,9 @@
     [self.score1 addSubview:removeBtn];
     
     LPLevelView *lView = [LPLevelView new];
-    lView.frame = CGRectMake(115, 80, 150, 44);
+    lView.frame = CGRectMake(kScreenWidth * 23/75, kScreenHeight * 16/75, kScreenWidth * 6/75, kScreenHeight * 44/667);
     lView.iconColor = [UIColor orangeColor];
-    lView.iconSize = CGSizeMake(20, 20);
+    lView.iconSize = CGSizeMake(kScreenWidth * 4/75, kScreenHeight * 4/75);
     lView.canScore = YES;
     lView.animated = YES;
     lView.level = 3.5;

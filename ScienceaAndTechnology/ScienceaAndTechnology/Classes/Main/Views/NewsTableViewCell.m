@@ -48,10 +48,10 @@
         self.contentLabel.text = model.summ;
         [self.photoImage sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
     }else if (model.img.length == 0){
-        self.timeLabel.frame = CGRectMake(14, 12, 339,40 );
-        self.timeLabel.text = model.newstitle;
+        self.titleLabel.frame = CGRectMake(kScreenWidth * 14/375,kScreenHeight * 12/667,kScreenWidth * 339/375,kScreenHeight * 40/667 );
+        self.titleLabel.text = model.newstitle;
         self.nameLabel.text = model.name;
-        self.contentLabel.frame = CGRectMake(14, 55, 339, 40);
+        self.contentLabel.frame = CGRectMake(kScreenWidth * 14/375,kScreenHeight * 55/667,kScreenWidth * 339/375,kScreenHeight * 40/667);
         self.contentLabel.text = model.summ;
     }
    
